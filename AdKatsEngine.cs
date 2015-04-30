@@ -14,7 +14,7 @@
  * Development by Daniel J. Gradinjan (ColColonCleaner)
  * 
  * AdKats.cs
- * Version 7.0.0.0 Build 1
+ * Version 7.0.0.0 Build 2
  * 
  * UNKNOWN RELEASE DATE
  * 
@@ -48,7 +48,7 @@ namespace PRoConEvents {
 
         //Current engine version
         //Version number intentionally breaking MyRCON's tracking until patched
-        private const String engineVersion = "7.0.0.0 Build 1";
+        private const String EngineVersion = "7.0.0.0 Build 2";
 
         //Interop
         public static List<AdKatsEngine> Instances;
@@ -79,7 +79,7 @@ namespace PRoConEvents {
         }
 
         public string GetPluginVersion() {
-            return engineVersion;
+            return EngineVersion;
         }
 
         public string GetPluginAuthor() {
@@ -99,7 +99,7 @@ namespace PRoConEvents {
             catch (Exception e) {
                 Log.Exception("Error handling event " + Helper.GetCurrentMethod(), e);
             }
-            Log.EventExit();
+            Log.ProconEventExit();
         }
 
         public void OnPluginDisable() {
@@ -111,7 +111,7 @@ namespace PRoConEvents {
             catch (Exception e) {
                 Log.Exception("Error handling event " + Helper.GetCurrentMethod(), e);
             }
-            Log.EventExit();
+            Log.ProconEventExit();
         }
 
         public class EventManager {
@@ -131,23 +131,23 @@ namespace PRoConEvents {
                 public Dictionary<String, Func<Object, Object, Object, Object, Boolean>> HandlerMethods { get; private set; }
 
                 public Event(String key, String name, HashSet<GameVersion> games, Func<Object, Object, Object, Object, Boolean> defaultHandler) {
-                    AdKatsEngine _engine = Instances.First();
+                    AdKatsEngine engine = Instances.First();
                     Key = key;
                     Name = name;
                     Games = games;
                     HandlerMethods = new Dictionary<String, Func<Object, Object, Object, Object, Boolean>>();
                     DefaultHandler = defaultHandler;
                     TriggerFunction = (o1, o2, o3, o4) => {
-                        _engine.Log.Debug("Triggering event " + key, 6);
+                        engine.Log.Debug("Triggering event " + key, 6);
                         bool runDefault = true;
                         Stopwatch timer = new Stopwatch();
                         if (HandlerMethods.Any()) {
-                            _engine.Log.Debug(key + " has custom event handlers.", 6);
+                            engine.Log.Debug(key + " has custom event handlers.", 6);
                             lock (HandlerMethods) {
                                 foreach (KeyValuePair<string, Func<object, object, object, object, bool>> handlerPair in HandlerMethods) {
                                     string subscriber = handlerPair.Key;
                                     Func<object, object, object, object, bool> handler = handlerPair.Value;
-                                    _engine.Log.Debug("Running " + subscriber + " event handler for " + key, 6);
+                                    engine.Log.Debug("Running " + subscriber + " event handler for " + key, 6);
                                     bool response = true;
                                     timer.Reset();
                                     timer.Start();
@@ -157,16 +157,16 @@ namespace PRoConEvents {
                                     }
                                     catch (Exception e) {
                                         exception = true;
-                                        _engine.Log.Exception("Error running " + subscriber + " event handler for " + key, e);
+                                        engine.Log.Exception("Error running " + subscriber + " event handler for " + key, e);
                                     }
                                     timer.Stop();
                                     if (!exception) {
                                         if (response) {
-                                            _engine.Log.Debug(subscriber + " event handler for " + key + " returned in " + Helper.GetTimeS(timer.Elapsed) + ".", 6);
+                                            engine.Log.Debug(subscriber + " event handler for " + key + " returned in " + Helper.GetTimeS(timer.Elapsed) + ".", 6);
                                         }
                                         else {
                                             runDefault = false;
-                                            _engine.Log.Debug(subscriber + " event handler for " + key + " returned in " + Helper.GetTimeS(timer.Elapsed) + ". Default handling cancelled.", 6);
+                                            engine.Log.Debug(subscriber + " event handler for " + key + " returned in " + Helper.GetTimeS(timer.Elapsed) + ". Default handling cancelled.", 6);
                                         }
                                     }
                                 }
@@ -177,15 +177,15 @@ namespace PRoConEvents {
                             timer.Start();
                             bool exception = false;
                             try {
-                                bool response = DefaultHandler(o1, o2, o3, o4);
+                                DefaultHandler(o1, o2, o3, o4);
                             }
                             catch (Exception e) {
                                 exception = true;
-                                _engine.Log.Exception("Error running default event handler for " + key, e);
+                                engine.Log.Exception("Error running default event handler for " + key, e);
                             }
                             timer.Stop();
                             if (!exception) {
-                                _engine.Log.Debug("Default event handler for " + key + " returned in " + Helper.GetTimeS(timer.Elapsed) + ".", 6);
+                                engine.Log.Debug("Default event handler for " + key + " returned in " + Helper.GetTimeS(timer.Elapsed) + ".", 6);
                             }
                         }
                         return runDefault;
@@ -419,86 +419,21 @@ namespace PRoConEvents {
                 _instanceMonitorWaitHandle.Set();
             }
 
-            //Returns whether the request was accepted
-            public Boolean EnableWhenReady() {
-                try {
-                    switch (State) {
-                        case InstanceState.Setup:
-                            _engine.Log.Info("Preparing " + _engine.GetType().Name + " to enable.");
-                            break;
-                        case InstanceState.Stopped:
-                            _engine.Log.Info("Enabling " + _engine.GetType().Name + " version " + _engine.GetPluginVersion());
-                            break;
-                        case InstanceState.Starting:
-                            _engine.Log.Info(_engine.GetType().Name + " already enabling.");
-                            return false;
-                        case InstanceState.Running:
-                            _engine.Log.Info(_engine.GetType().Name + " already running.");
-                            return false;
-                        case InstanceState.Stopping:
-                            _engine.Log.Info(_engine.GetType().Name + " shutting down. It will be re-enabled once shutdown is complete.");
-                            break;
-                        case InstanceState.Exception:
-                            _engine.Log.Info(_engine.GetType().Name + " in exception mode. Please reboot procon to enable it.");
-                            break;
-                        default:
-                            throw new ArgumentOutOfRangeException();
-                    }
-                }
-                catch (Exception e) {
-                    _engine.Log.Exception("Error while running " + Helper.GetCurrentMethod() + ".", e);
-                }
-                return false;
-            }
-
-            //Returns whether the request was accepted
-            public Boolean DisableWhenReady() {
-                try {
-                    switch (State) {
-                        case InstanceState.Setup:
-                            _engine.Log.Info("Cannot disable " + _engine.GetType().Name + " during setup.");
-                            return false;
-                        case InstanceState.Stopped:
-                            _engine.Log.Info(_engine.GetType().Name + " already disabled.");
-                            break;
-                        case InstanceState.Starting:
-                            _engine.Log.Info(_engine.GetType().Name + " already enabling.");
-                            return false;
-                        case InstanceState.Running:
-                            _engine.Log.Info(_engine.GetType().Name + " already running.");
-                            return false;
-                        case InstanceState.Stopping:
-                            _engine.Log.Info(_engine.GetType().Name + " shutting down. It will be re-enabled once shutdown is complete.");
-                            break;
-                        case InstanceState.Exception:
-                            _engine.Log.Info(_engine.GetType().Name + " in exception mode. Please reboot procon to enable it.");
-                            break;
-                        default:
-                            throw new ArgumentOutOfRangeException();
-                    }
-                }
-                catch (Exception e) {
-                    _engine.Log.Exception("Error while running " + Helper.GetCurrentMethod() + ".", e);
-                }
-                return false;
-            }
-
-            private Boolean CallEnable() {
-                if (!ProconEnabled) {
+            private void SetProconEnable(Boolean enable) {
+                if (enable && !ProconEnabled) {
                     _engine.ExecuteCommand("procon.protected.plugins.enable", _engine.GetType().Name, "True");
-                    return true;
+                } else if (!enable && ProconEnabled) {
+                    _engine.ExecuteCommand("procon.protected.plugins.enable", _engine.GetType().Name, "False");
                 }
-                _engine.Log.Info("Enabling " + _engine.GetType().Name + " " + _engine.GetPluginVersion());
-                return true;
             }
 
-            private Boolean CallDisable() {
-                if (ProconEnabled) {
-                    _engine.ExecuteCommand("procon.protected.plugins.enable", _engine.GetType().Name, "False");
-                    return true;
-                }
-                _engine.Log.Info("Disabling " + _engine.GetType().Name + " " + _engine.GetPluginVersion());
-                return true;
+            private void SetTargetState(InstanceState state) {
+                SetCurrentState(state);
+                _instanceMonitorWaitHandle.Set();
+            }
+
+            private void SetCurrentState(InstanceState state) {
+                State = state;
             }
 
             private void StartInstanceMonitor() {
@@ -511,68 +446,41 @@ namespace PRoConEvents {
                             //Check state
                             switch (State) {
                                 case InstanceState.Setup:
-                                    //Run registered setup code
-                                    //Instance has finished set up. Switch to ready and call enable if desired.
-                                    State = InstanceState.Stopped;
-                                    continue;
+                                    RunSetupSequence();
                                     break;
                                 case InstanceState.Stopped:
-                                    //If enabled, run startup process
+                                    //If stopped, and procon enabled, run startup sequence
                                     if (ProconEnabled) {
-                                        _engine.Exe.Async("Startup", () => {
-                                            _engine.Log.Info("Entered startup. YAY!");
-                                            Thread.Sleep(5000);
-                                            _engine.Log.Info(_engine.GetType().Name + " " + _engine.GetPluginVersion() + " running!");
-                                            State = InstanceState.Running;
-                                            //For longer running code, kick at least every 30 seconds
-                                            _engine.Exe.KickWatchdog();
-                                            return true;
-                                        });
-                                        State = InstanceState.Starting;
-                                        continue;
+                                        RunStartupSequence();
                                     }
-                                    //Wait for input
-                                    _instanceMonitorWaitHandle.Reset();
                                     break;
                                 case InstanceState.Starting:
+                                    //If starting, and procon disabled, send acknowledgement
                                     if (!ProconEnabled) {
                                         _engine.Log.Info("Shutdown requested during startup. Please wait.");
                                     }
-                                    //Wait for input
-                                    _instanceMonitorWaitHandle.Reset();
                                     break;
                                 case InstanceState.Running:
-                                    //If disabled, run shutdown process
+                                    //If running, and procon disabled, run shutdown sequence
                                     if (!ProconEnabled) {
-                                        _engine.Exe.Async("Shutdown", () => {
-                                            _engine.Log.Info("Entered shutdown. YAY!");
-                                            Thread.Sleep(5000);
-                                            _engine.Log.Info(_engine.GetType().Name + " " + _engine.GetPluginVersion() + " stopped!");
-                                            State = InstanceState.Stopped;
-                                            //For longer running code, kick at least every 30 seconds
-                                            _engine.Exe.KickWatchdog();
-                                            return true;
-                                        });
-                                        State = InstanceState.Stopping;
-                                        continue;
+                                        RunShutdownSequence();
                                     }
-                                    //Wait for input
-                                    _instanceMonitorWaitHandle.Reset();
                                     break;
                                 case InstanceState.Stopping:
+                                    //If stopping, and procon enabled, send acknowledgement
                                     if (ProconEnabled) {
                                         _engine.Log.Info("Startup will commence after shutdown is complete. Please wait.");
                                     }
-                                    //Wait for input
-                                    _instanceMonitorWaitHandle.Reset();
                                     break;
                                 case InstanceState.Exception:
-                                    //Wait for input
-                                    _instanceMonitorWaitHandle.Reset();
+                                    //If in exception state, send acklowledgement, cancel actions
+                                    _engine.Log.Error("Instance in exception state and cannot function. Inform ColColonCleaner, this should not happen.");
                                     break;
                                 default:
                                     throw new ArgumentOutOfRangeException();
                             }
+                            //Wait for input
+                            _instanceMonitorWaitHandle.Reset();
                             _instanceMonitorWaitHandle.WaitOne(Timeout.Infinite);
                         }
                         catch (Exception e) {
@@ -581,6 +489,53 @@ namespace PRoConEvents {
                         }
                     }
                 }, false);
+            }
+
+            private void RunSetupSequence() {
+                _engine.Log.Info("Preparing for startup.");
+                SetCurrentState(InstanceState.Setup);
+                _engine.Exe.Async("EngineSetup", () => {
+                    //Wait to represent registered setup code
+                    Thread.Sleep(5000);
+                    //For longer running code, kick at least every 30 seconds
+                    _engine.Exe.KickWatchdog();
+                    _engine.Log.Info(_engine.GetType().Name + " " + _engine.GetPluginVersion() + " ready!");
+                    SetTargetState(InstanceState.Stopped);
+                    return true;
+                });
+            }
+
+            private void RunStartupSequence() {
+                _engine.Log.Info("Starting up.");
+                SetCurrentState(InstanceState.Starting);
+                _engine.Exe.Async("EngineStartup", () => {
+                    //Wait to represent startup code
+                    Thread.Sleep(5000);
+                    //For longer running code, kick at least every 30 seconds
+                    _engine.Exe.KickWatchdog();
+                    if (!ProconEnabled) {
+                        _engine.Log.Info("Startup cancelled.");
+                        RunShutdownSequence();
+                        return true;
+                    }
+                    _engine.Log.Info(_engine.GetType().Name + " " + _engine.GetPluginVersion() + " running!");
+                    SetTargetState(InstanceState.Running);
+                    return true;
+                });
+            }
+
+            private void RunShutdownSequence() {
+                _engine.Log.Info("Shutting down.");
+                SetCurrentState(InstanceState.Stopping);
+                _engine.Exe.Async("EngineShutdown", () => {
+                    //Wait to represent shutdown code
+                    Thread.Sleep(5000);
+                    //For longer running code, kick at least every 30 seconds
+                    _engine.Exe.KickWatchdog();
+                    _engine.Log.Info(_engine.GetType().Name + " " + _engine.GetPluginVersion() + " stopped!");
+                    SetTargetState(InstanceState.Stopped);
+                    return true;
+                });
             }
         }
 
@@ -607,7 +562,7 @@ namespace PRoConEvents {
                 Debug("Entering event " + Helper.AlphaNum(new StackFrame(1).GetMethod().Name) + " on " + ((String.IsNullOrEmpty(Thread.CurrentThread.Name)) ? ("Main") : (Helper.AlphaNum(Thread.CurrentThread.Name))) + Thread.CurrentThread.ManagedThreadId, 6);
             }
 
-            public void EventExit() {
+            public void ProconEventExit() {
                 Debug("Exiting event " + Helper.AlphaNum(new StackFrame(1).GetMethod().Name) + " on " + ((String.IsNullOrEmpty(Thread.CurrentThread.Name)) ? ("Main") : (Helper.AlphaNum(Thread.CurrentThread.Name))) + Thread.CurrentThread.ManagedThreadId, 6);
             }
 
@@ -737,7 +692,7 @@ namespace PRoConEvents {
             public static String GetTimeString(TimeSpan duration, Int32 maxComponents) {
                 String timeString = null;
                 if (maxComponents < 1) {
-                    return timeString;
+                    return null;
                 }
                 String formattedTime = (duration.TotalMilliseconds >= 0) ? ("") : ("-");
 
@@ -796,7 +751,7 @@ namespace PRoConEvents {
                 return timeString;
             }
 
-            public static string GetTimeMS(TimeSpan duration) {
+            public static string GetTimeMs(TimeSpan duration) {
                 return Math.Round(duration.TotalMilliseconds, 1) + "ms";
             }
 
