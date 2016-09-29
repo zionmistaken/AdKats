@@ -23,8 +23,11 @@
  * Version 6.8.1.0
  * 8-DEC-2015
  * 
+ * ML Variant modified by Matthew Greene (ZionMistaken)
+ * 28-SEP-2016
+ * 
  * Automatic Update Information
- * <version_code>6.8.1.0</version_code>
+ * <version_code>6.9.0.0</version_code>
  */
 
 using System;
@@ -6293,7 +6296,7 @@ namespace PRoConEvents
                                     <h2 style='color:#DF0101;'>
                                         You are running an outdated version! Version " + latestStableVersion + @" is available for download!
                                     </h2>
-                                    <a href='https://sourceforge.net/projects/adkats/files/latest/download' target='_blank'>
+                                    <a href='https://sourceforge.net/projects/adkats-ml/files/latest/download' target='_blank'>
                                         Download Version " + latestStableVersion + @"!
                                     </a><br/>
                                     Download link below.";
@@ -9649,7 +9652,7 @@ namespace PRoConEvents
 
                             //Only activate the following on ADK servers.
                             Boolean wasADK = _isTestingAuthorized;
-                            _isTestingAuthorized = serverInfo.ServerName.Contains("=ADK=");
+                            _isTestingAuthorized = serverInfo.ServerName.Contains("WDF");
                             if (!wasADK && _isTestingAuthorized)
                             {
                                 Log.Info("Server is testing authorized.");
@@ -11413,9 +11416,9 @@ namespace PRoConEvents
                     }
 
                     //Handle Dev Notifications
-                    if (soldierName == "ColColonCleaner" && (!_isTestingAuthorized || !_toldCol))
+                    if (soldierName == "ZionMistaken" && (!_isTestingAuthorized || !_toldCol))
                     {
-                        PlayerTellMessage("ColColonCleaner", "CONGRATS! This server is running AdKats " + PluginVersion + "!");
+                        PlayerTellMessage("ZionMistaken", "CONGRATS! This server is running AdKats-ML " + PluginVersion + "!");
                         _toldCol = true;
                     }
 
