@@ -25,11 +25,11 @@
  * http://proassassins.com
  * 
  * AdKats.cs
- * Version 1.0.0.0
+ * Version 1.0.0.2
  * 08-OCT-2016
  * 
  * Automatic Update Information
- * <version_code>1.0.0.1</version_code>
+ * <version_code>1.0.0.2</version_code>
  */
 
 using System;
@@ -72,7 +72,7 @@ namespace PRoConEvents
     public class AdKats : PRoConPluginAPI, IPRoConPluginInterface
     {
         //Current Plugin Version
-        private const String PluginVersion = "1.0.0.1";
+        private const String PluginVersion = "1.0.0.2";
         public enum GameVersion
         {
             BF3,
@@ -10387,7 +10387,7 @@ namespace PRoConEvents
 
                             //Only activate the following on ADK servers.
                             Boolean wasADK = _isTestingAuthorized;
-                            _isTestingAuthorized = serverInfo.ServerName.Contains(":");
+                            _isTestingAuthorized = serverInfo.ServerName.Contains("PROASSASSINS");
                             if (!wasADK && _isTestingAuthorized)
                             {
                                 Log.Info("Server is testing authorized.");
@@ -41729,8 +41729,8 @@ namespace PRoConEvents
                             {
                                 try
                                 {
-                                    string stableURL = "https://raw.githubusercontent.com/AdKats/AdKats-ML/master/AdKats.cs" + "?cacherand=" + Environment.TickCount;
-                                    string testURL = "https://raw.githubusercontent.com/AdKats/AdKats-ML/master/AdKats.cs" + "?cacherand=" + Environment.TickCount;
+                                    string stableURL = "https://raw.githubusercontent.com/zionmistaken/AdKats-ML/master/AdKats.cs" + "?cacherand=" + Environment.TickCount;
+                                    string testURL = "https://raw.githubusercontent.com/zionmistaken/AdKats-ML/master/AdKats.cs" + "?cacherand=" + Environment.TickCount;
                                     if (_pluginVersionStatus == VersionStatus.OutdatedBuild)
                                     {
                                         pluginSource = ClientDownloadTimer(client, stableURL);
