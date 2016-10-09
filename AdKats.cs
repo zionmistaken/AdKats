@@ -23894,8 +23894,8 @@ namespace PRoConEvents
                     }
                     else
                     {
-                        PlayerTellMessage(record.source_name + "tried to slay you but failed.");
-                        SendMessageToSource("Killing " + _alwaysdebug + " is DENIED");
+                        PlayerTellMessage(record.target_name, record.source_name + " tried to slay you but failed.");
+                        SendMessageToSource(record, "Killing " + _alwaysdebug + " is DENIED");
                     }                    
                     if (record.source_name != record.target_name || record.command_type.command_key == "player_punish")
                     {
