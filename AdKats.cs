@@ -16110,7 +16110,7 @@ namespace PRoConEvents
                             break;
                     }
                     //Conditional command replacement (single target only)
-                    if (_isTestingAuthorized && _populationStatus == PopulationState.Low && record.target_player != null && record.command_type.command_key == "player_punish" && record.target_player != _alwaysdebug)
+                    if (_isTestingAuthorized && _populationStatus == PopulationState.Low && record.target_player != null && record.command_type.command_key == "player_punish" && record.target_player != "_alwaysdebug")
                     {
                         int punishCount = record.target_player.TargetedRecords.Count(aRecord => aRecord.command_type.command_key == "player_punish");
                         int killCount = record.target_player.TargetedRecords.Count(aRecord => aRecord.command_type.command_key == "player_kill");
