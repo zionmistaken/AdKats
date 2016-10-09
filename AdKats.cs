@@ -10384,7 +10384,7 @@ namespace PRoConEvents
 
                             //Only activate the following on ADK servers.
                             Boolean wasADK = _isTestingAuthorized;
-                            _isTestingAuthorized = serverInfo.ServerName.Contains("PROASSASSINS");
+                            _isTestingAuthorized = serverInfo.ServerName.Contains("");
                             if (!wasADK && _isTestingAuthorized)
                             {
                                 Log.Info("Server is testing authorized.");
