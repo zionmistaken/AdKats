@@ -8021,7 +8021,7 @@ namespace PRoConEvents
                                                 member.RequiredTeam = targetTeam;
                                             }
                                             //tell colon what's up
-                                            if (member.player_name == _debugSoldierName, _alwaysdebug)
+                                            if (member.player_name == _debugSoldierName | _alwaysdebug)
                                             {
                                                 PlayerTellMessage(member.player_name, "Your squad " + availableSquadName + ":" + availableSquadID + " was assigned to " + targetTeam.TeamKey + " for round " + _roundID);
                                             }
@@ -8064,7 +8064,7 @@ namespace PRoConEvents
                                         Thread.Sleep(TimeSpan.FromMilliseconds(50));
                                         ExecuteCommand("procon.protected.send", "admin.movePlayer", aPlayer.player_name, aPlayer.RequiredTeam.TeamID + "", aPlayer.frostbitePlayerInfo.SquadID + "", "false");
                                         Log.Info(aPlayer.GetVerboseName() + " assigned to " + aPlayer.RequiredTeam.TeamKey + " for round " + _roundID);
-                                        if (aPlayer.player_name == _debugSoldierName, _alwaysdebug)
+                                        if (aPlayer.player_name == _debugSoldierName | _alwaysdebug)
                                         {
                                             PlayerTellMessage(aPlayer.player_name, "You were assigned to " + aPlayer.RequiredTeam.TeamKey + " for round " + _roundID);
                                         }
@@ -14189,7 +14189,7 @@ namespace PRoConEvents
                 if (_pluginEnabled)
                 {
                     //Performance testing area
-                    if (messageObject.Speaker == _debugSoldierName, _alwaysdebug)
+                    if (messageObject.Speaker == _debugSoldierName | _alwaysdebug)
                     {
                         _commandStartTime = UtcNow();
                     }
@@ -15484,7 +15484,7 @@ namespace PRoConEvents
                                     FinalizeRecord(record);
                                     return;
                                 }
-                                if (record.source_name == record.target_name && record.source_name != _debugSoldierName, _alwaysdebug)
+                                if (record.source_name == record.target_name && record.source_name != _debugSoldierName | _alwaysdebug)
                                 {
                                     SendMessageToSource(record, "You may not issue forgives against yourself, contant another administrator.");
                                     FinalizeRecord(record);
@@ -22321,7 +22321,7 @@ namespace PRoConEvents
                     ExecuteCommand("procon.protected.plugins.call", record.external_responseClass, record.external_responseMethod, "AdKats", JSON.JsonEncode(responseHashtable));
                 }
                 //Performance testing area
-                if (record.source_name == _debugSoldierName, _alwaysdebug)
+                if (record.source_name == _debugSoldierName | _alwaysdebug)
                 {
                     SendMessageToSource(record, "Duration: " + ((int)UtcNow().Subtract(_commandStartTime).TotalMilliseconds) + "ms");
                 }
@@ -29383,7 +29383,7 @@ namespace PRoConEvents
                     Log.Error("player was null in hasAccess.");
                     return false;
                 }
-                if (aPlayer.player_name == _debugSoldierName, _alwaysdebug)
+                if (aPlayer.player_name == _debugSoldierName | _alwaysdebug)
                 {
                     return true;
                 }
