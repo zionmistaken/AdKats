@@ -15501,7 +15501,7 @@ namespace PRoConEvents
                         case "player_report":
                         case "player_calladmin":
                                 {
-                                if (record.source_player.player_reputation < 800)
+                                if (record.source_player.player_reputation < 100)
                                 {
                                     SendMessageToSource(record, record.source_name + ", your reputation must be 100 or more to report");
                                     FinalizeRecord(record);
