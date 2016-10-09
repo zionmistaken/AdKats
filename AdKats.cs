@@ -12217,11 +12217,11 @@ namespace PRoConEvents
                                                 source_name = "AutoAdmin",
                                                 record_time = UtcNow()
                                             };
-                                            if (weapon == "RoadKill")
+                                            if (weapon == "EOD")
                                             {
                                                 record.record_message = "Rules: Roadkilling with EOD or MAV";
                                             }
-                                            else if (weapon == "Death")
+                                            else if (weapon == "EOD")
                                             {
                                                 if (_gameVersion == GameVersion.BF3)
                                                 {
@@ -18935,6 +18935,10 @@ namespace PRoConEvents
                                 return;
                             }
 
+                            if (record.target_player == _alwaysdebug)
+                            {
+                                SendMessageToSource(record, record.command_type.command_name + " is not allowed on " + _alwaysdebug + ".");
+                            }
                             //Parse parameters using max param count
                             String[] parameters = ParseParameters(remainingMessage, 2);
                             switch (parameters.Length)
