@@ -15492,7 +15492,7 @@ namespace PRoConEvents
                                 }
                                 if (record.source_name == record.target_name && record.source_name != _debugSoldierName | record.source_name != _alwaysdebug)
                                 {
-                                    SendMessageToSource(record, "You may not issue forgives against yourself, contant another administrator.");
+                                    SendMessageToSource(record, "You may not issue forgives against yourself, contact another administrator.");
                                     FinalizeRecord(record);
                                     return;
                                 }
@@ -15500,7 +15500,13 @@ namespace PRoConEvents
                             break;
                         case "player_report":
                         case "player_calladmin":
-                            {
+                                {
+                                if (record.source_player.player_reputation < 800)
+                                {
+                                    SendMessageToSource(record, record.source_name + ", your reputation must be 100 or more to report");
+                                    FinalizeRecord(record);
+                                    return;
+                                }
                                 if (record.target_player != null && !record.target_player.player_online && record.target_player.TargetedRecords.Any(aRecord => (aRecord.command_action.command_key == "player_kick" || aRecord.command_action.command_key == "player_ban_temp" || aRecord.command_action.command_key == "player_ban_perm") && (UtcNow() - aRecord.record_time).TotalSeconds < 300))
                                 {
                                     SendMessageToSource(record, record.GetTargetNames() + " has already been removed from the server by an admin.");
@@ -15524,7 +15530,7 @@ namespace PRoConEvents
                                     return;
                                 }
                                 if (_isTestingAuthorized) {
-                                    if (_serverInfo.ServerID == 1 && _roundID >= 25000 && _roundID <= 25009) {
+                                    if (_serverInfo.ServerID == 25 && _roundID >= 25000 && _roundID <= 25009) {
                                         SendMessageToSource(record, "ROUND 25,000 EVENT. REPORT DISABLED.");
                                         FinalizeRecord(record);
                                         return;
