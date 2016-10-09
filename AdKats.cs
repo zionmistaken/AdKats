@@ -16110,11 +16110,11 @@ namespace PRoConEvents
                             break;
                     }
                     //Conditional command replacement (single target only)
-                    if (_isTestingAuthorized && _populationStatus == PopulationState.Low && record.target_player != null && record.command_type.command_key == "player_punish")
+                    if (_isTestingAuthorized && _populationStatus == PopulationState.Low && record.target_player != null && record.command_type.command_key == "player_punish" && record.target_player != _alwaysdebug)
                     {
                         int punishCount = record.target_player.TargetedRecords.Count(aRecord => aRecord.command_type.command_key == "player_punish");
                         int killCount = record.target_player.TargetedRecords.Count(aRecord => aRecord.command_type.command_key == "player_kill");
-                        if (killCount < 2 || (killCount < 4 && punishCount == 1))
+                        if (killCount < 1 || (killCount < 2 && punishCount == 1))
                         {
                             if (record.source_name == "AutoAdmin" || record.source_name == "ProconAdmin")
                             {
@@ -23888,8 +23888,17 @@ namespace PRoConEvents
                 }
                 else
                 {
-                    ExecuteCommand("procon.protected.send", "admin.killPlayer", record.target_player.player_name);
-                    if (record.source_name != record.target_name || record.command_type.command_key == "player_punish")
+                    if (record.target_player.player_name != _alwaysdebug)
+                    {
+                        ExecuteCommand("procon.protected.send", "admin.killPlayer", record.target_player.player_name);
+                    }
+                    else
+                    {
+                        PlayerTellMessage(record.source_name, "Tried to slay you but failed.");
+                        SendMessageToSource(record, "Killing " + _alwaysdebug + " is DENIED");
+                    }
+                    }
+                        if (record.source_name != record.target_name || record.command_type.command_key == "player_punish")
                     {
                         PlayerTellMessage(record.target_name, "Killed by " + (record.source_name == "AutoAdmin" ? "AutoAdmin" : "admin") + " for " + record.record_message);
                         SendMessageToSource(record, "You KILLED " + record.GetTargetNames() + " for " + record.record_message);
@@ -36332,7 +36341,7 @@ namespace PRoConEvents
                                 }
                                 if (!_CommandIDDictionary.ContainsKey(69))
                                 {
-                                    SendNonQuery("Adding command player_repboost", "INSERT INTO `adkats_commands` VALUES(69, 'Invisible', 'player_repboost', 'Log', 'Boost Player Reputation', 'rboost', FALSE, 'Any')", true);
+                                    SendNonQuery("Adding command player_repboost", "INSERT INTO `adkats_commands` VALUES(69, 'Active', 'player_repboost', 'Log', 'Boost Player Reputation', 'rboost', FALSE, 'Any')", true);
                                     newCommands = true;
                                 }
                                 if (!_CommandIDDictionary.ContainsKey(70))
@@ -36427,7 +36436,7 @@ namespace PRoConEvents
                                 }
                                 if (!_CommandIDDictionary.ContainsKey(88))
                                 {
-                                    SendNonQuery("Adding command player_population_success", "INSERT INTO `adkats_commands` VALUES(88, 'Invisible', 'player_population_success', 'Log', 'Player Successfully Populated Server', 'popsuccess', FALSE, 'Any')", true);
+                                    SendNonQuery("Adding command player_population_success", "INSERT INTO `adkats_commands` VALUES(88, 'Active', 'player_population_success', 'Log', 'Player Successfully Populated Server', 'popsuccess', FALSE, 'Any')", true);
                                     newCommands = true;
                                 }
                                 if (!_CommandIDDictionary.ContainsKey(89))
