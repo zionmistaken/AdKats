@@ -1,5 +1,5 @@
 <script>
-    //<latest_stable_release>1.0.0.2</latest_stable_release>
+    //<latest_stable_release>6.9.0.0</latest_stable_release>
 </script>
 <p>
     <a name=adkats />
