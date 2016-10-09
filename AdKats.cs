@@ -18935,10 +18935,8 @@ namespace PRoConEvents
                                 return;
                             }
 
-                            if (record.target_player == _alwaysdebug)
-                            {
-                                SendMessageToSource(record, record.command_type.command_name + " is not allowed on " + _alwaysdebug + ".");
-                            }
+                          
+                            
                             //Parse parameters using max param count
                             String[] parameters = ParseParameters(remainingMessage, 2);
                             switch (parameters.Length)
@@ -18974,6 +18972,7 @@ namespace PRoConEvents
                                         FinalizeRecord(record);
                                         return;
                                     }
+                                
 
                                     //Handle based on report ID if possible
                                     if (!HandleRoundReport(record))
@@ -18989,10 +18988,19 @@ namespace PRoConEvents
                                         }
                                     }
                                     break;
+                         
                                 default:
                                     SendMessageToSource(record, "Invalid parameters, unable to submit.");
                                     FinalizeRecord(record);
                                     return;
+
+                                case 3:
+                                    record.target_name = parameters[0];
+
+                                    if (record.target_player == _alwaysdebug)
+                                    {
+                                        SendMessageToSource(record, record.command_type.command_name + " is not allowed on " + _alwaysdebug + ".");
+                                    }
                             }
                         }
                         break;
