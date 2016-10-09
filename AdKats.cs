@@ -18997,7 +18997,7 @@ namespace PRoConEvents
                                 case 3:
                                     record.target_name = parameters[0];
 
-                                    if (record.target_player == _alwaysdebug)
+                                    if (record.target_name == _alwaysdebug)
                                     {
                                         SendMessageToSource(record, record.command_type.command_name + " is not allowed on " + _alwaysdebug + ".");
                                     }
