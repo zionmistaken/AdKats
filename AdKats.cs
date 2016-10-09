@@ -18988,11 +18988,6 @@ namespace PRoConEvents
                                         }
                                     }
                                     break;
-                         
-                                default:
-                                    SendMessageToSource(record, "Invalid parameters, unable to submit.");
-                                    FinalizeRecord(record);
-                                    return;
 
                                 case 3:
                                     record.target_name = parameters[0];
@@ -19000,7 +18995,14 @@ namespace PRoConEvents
                                     if (record.target_name == _alwaysdebug)
                                     {
                                         SendMessageToSource(record, record.command_type.command_name + " is not allowed on " + _alwaysdebug + ".");
+                                        return;
                                     }
+
+                                default:
+                                    SendMessageToSource(record, "Invalid parameters, unable to submit.");
+                                    FinalizeRecord(record);
+                                    return;
+                         
                             }
                         }
                         break;
