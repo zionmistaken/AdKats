@@ -25,11 +25,11 @@
  * http://proassassins.com
  * 
  * AdKats.cs
- * Version 1.0.0.2
+ * Version 6.9.0.0
  * 08-OCT-2016
  * 
  * Automatic Update Information
- * <version_code>1.0.0.2</version_code>
+ * <version_code>6.9.0.0</version_code>
  */
 
 using System;
@@ -72,7 +72,7 @@ namespace PRoConEvents
     public class AdKats : PRoConPluginAPI, IPRoConPluginInterface
     {
         //Current Plugin Version
-        private const String PluginVersion = "1.0.0.2";
+        private const String PluginVersion = "6.9.0.0";
         public enum GameVersion
         {
             BF3,
