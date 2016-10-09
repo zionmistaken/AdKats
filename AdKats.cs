@@ -15421,8 +15421,7 @@ namespace PRoConEvents
                     }
                     if (record.target_player != null && record.target_player.Equals (_alwaysdebug))
                     {
-                        SendMessageToSource(record, record.command_type.command_name + " cannot be issued on " + record.target_player.GetVerboseName());
-                        PlayerSay(record, (record.record_source) + " tried to " + (record.command_type.command_name) " you but was denied." );
+                        SendMessageToSource(record, record.command_type.command_name + " cannot be issued on " + record.target_player.GetVerboseName());                       
                         FinalizeRecord(record);
                         return;
                     }
