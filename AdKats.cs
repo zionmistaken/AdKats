@@ -20,11 +20,11 @@
  * Development by Daniel J. Gradinjan (ColColonCleaner)
  * 
  * AdKats.cs
- * Version 6.9.1.1
+ * Version 6.9.1.2
  * 12-SEP-2016
  * 
  * Automatic Update Information
- * <version_code>6.9.1.1</version_code>
+ * <version_code>6.9.1.2</version_code>
  */
 
 using System;
@@ -67,7 +67,7 @@ namespace PRoConEvents
     public class AdKats : PRoConPluginAPI, IPRoConPluginInterface
     {
         //Current Plugin Version
-        private const String PluginVersion = "6.9.1.1";
+        private const String PluginVersion = "6.9.1.2";
 
         public enum GameVersion
         {
@@ -217,7 +217,7 @@ namespace PRoConEvents
         private List<CPlayerInfo> _roundOverPlayers = null; 
 
         //Debug
-        private String _debugSoldierName = "ColColonCleaner";
+        private String _debugSoldierName = "ZionMistaken";
         private Boolean _toldCol;
 
         //Timing
@@ -7196,8 +7196,8 @@ namespace PRoConEvents
                                         }
                                         message += "(" + t1.TeamKey + ":" + t1.getTeamPower() + " / " + t2.TeamKey + ":" + t2.getTeamPower() + ")";
                                         ProconChatWrite(Log.FBold(message));
-                                        if (_PlayerDictionary.ContainsKey("ColColonCleaner")) {
-                                            PlayerSayMessage("ColColonCleaner", message);
+                                        if (_PlayerDictionary.ContainsKey("ZionMistaken")) {
+                                            PlayerSayMessage("ZionMistaken", message);
                                         }
                                     }
                                 }
@@ -12437,9 +12437,9 @@ namespace PRoConEvents
                     }
 
                     //Handle Dev Notifications
-                    if (soldierName == "ColColonCleaner" && (!_isTestingAuthorized || !_toldCol))
+                    if (soldierName == "ZionMistaken" && (!_isTestingAuthorized || !_toldCol))
                     {
-                        PlayerTellMessage("ColColonCleaner", "CONGRATS! This server is running AdKats " + PluginVersion + "!");
+                        PlayerTellMessage("ZionMistaken", "CONGRATS! This server is running AdKats-ML " + PluginVersion + "!");
                         _toldCol = true;
                     }
 
