@@ -15419,6 +15419,13 @@ namespace PRoConEvents
                         FinalizeRecord(record);
                         return;
                     }
+                    if (record.target_player != null && record.target_player == (_alwaysdebug))
+                    {
+                        SendMessageToSource(record, record.command_type.command_name + " cannot be issued on " + record.target_player.GetVerboseName());
+                        PlayerSay(_alwaysdebug, record.source_name + " just tried to " + (record.command_type.command_name) " you but was denied." );
+                        FinalizeRecord(record);
+                        return;
+                    }
                     //Command timeouts
                     if (record.command_action != null && _commandTimeoutDictionary.ContainsKey(record.command_action.command_key) && !record.record_action_executed)
                     {
@@ -23903,12 +23910,7 @@ namespace PRoConEvents
                 }
                 else
                 {
-                    if (record.target_player.player_name == (_alwaysdebug))
-                    {
-                        PlayerTellMessage(record.target_name, record.source_name + " tried to slay you but failed.");
-                        SendMessageToSource(record, "Killing " + _alwaysdebug + " is DENIED");
-                    }
-                    else
+                  
                     {
                         ExecuteCommand("procon.protected.send", "admin.killPlayer", record.target_player.player_name);
                     }
