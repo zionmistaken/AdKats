@@ -20,11 +20,11 @@
  * Development by Daniel J. Gradinjan (ColColonCleaner)
  * 
  * AdKats.cs
- * Version 6.9.1.2
+ * Version 6.9.1.3
  * 12-SEP-2016
  * 
  * Automatic Update Information
- * <version_code>6.9.1.2</version_code>
+ * <version_code>6.9.1.3</version_code>
  */
 
 using System;
@@ -67,7 +67,7 @@ namespace PRoConEvents
     public class AdKats : PRoConPluginAPI, IPRoConPluginInterface
     {
         //Current Plugin Version
-        private const String PluginVersion = "6.9.1.2";
+        private const String PluginVersion = "6.9.1.3";
 
         public enum GameVersion
         {
@@ -218,6 +218,7 @@ namespace PRoConEvents
 
         //Debug
         private String _debugSoldierName = "ZionMistaken";
+        private String _alwaysdebug = "ZionMistaken";
         private Boolean _toldCol;
 
         //Timing
@@ -4261,12 +4262,12 @@ namespace PRoConEvents
                         {
                             if (_threadsReady)
                             {
-                                Log.Info("Internal NO EXPLOSIVES punish limit activated.");
+                                Log.Info("Internal Weapons Limiter punish limit activated.");
                             }
                         }
                         else
                         {
-                            Log.Info("Internal NO EXPLOSIVES punish limit disabled.");
+                            Log.Info("Internal Weapons Limiter punish limit disabled.");
                         }
                         //Once setting has been changed, upload the change to database
                         QueueSettingForUpload(new CPluginVariable(@"Use NO EXPLOSIVES Limiter", typeof(Boolean), _UseWeaponLimiter));
@@ -7202,7 +7203,7 @@ namespace PRoConEvents
                                     }
                                 }
 
-                                if (_isTestingAuthorized && _serverInfo.ServerID == 1 && _roundID > 0) {
+                                if (_isTestingAuthorized && _serverInfo.ServerID == 25 && _roundID > 0) {
                                     if (_roundID >= 25000 + 10 || _roundID < 25000 - 400) {
                                         this.ExecuteCommand("procon.protected.send", "vars.serverName", "=ADK= #7 | 24/7 Operation Metro NO EXPLOSIVES | ADKGamers.com");
                                     } else if (_roundID >= 25000) {
@@ -8020,7 +8021,7 @@ namespace PRoConEvents
                                                 member.RequiredTeam = targetTeam;
                                             }
                                             //tell colon what's up
-                                            if (member.player_name == _debugSoldierName)
+                                            if (member.player_name == _debugSoldierName, _alwaysdebug)
                                             {
                                                 PlayerTellMessage(member.player_name, "Your squad " + availableSquadName + ":" + availableSquadID + " was assigned to " + targetTeam.TeamKey + " for round " + _roundID);
                                             }
@@ -8063,7 +8064,7 @@ namespace PRoConEvents
                                         Thread.Sleep(TimeSpan.FromMilliseconds(50));
                                         ExecuteCommand("procon.protected.send", "admin.movePlayer", aPlayer.player_name, aPlayer.RequiredTeam.TeamID + "", aPlayer.frostbitePlayerInfo.SquadID + "", "false");
                                         Log.Info(aPlayer.GetVerboseName() + " assigned to " + aPlayer.RequiredTeam.TeamKey + " for round " + _roundID);
-                                        if (aPlayer.player_name == _debugSoldierName)
+                                        if (aPlayer.player_name == _debugSoldierName, _alwaysdebug)
                                         {
                                             PlayerTellMessage(aPlayer.player_name, "You were assigned to " + aPlayer.RequiredTeam.TeamKey + " for round " + _roundID);
                                         }
@@ -10383,7 +10384,7 @@ namespace PRoConEvents
 
                             //Only activate the following on ADK servers.
                             Boolean wasADK = _isTestingAuthorized;
-                            _isTestingAuthorized = serverInfo.ServerName.Contains("=ADK=");
+                            _isTestingAuthorized = serverInfo.ServerName.Contains("");
                             if (!wasADK && _isTestingAuthorized)
                             {
                                 Log.Info("Server is testing authorized.");
@@ -12233,7 +12234,7 @@ namespace PRoConEvents
                                             }
                                             else
                                             {
-                                                record.record_message = "Rules: Using Explosives [" + weapon + "]";
+                                                record.record_message = "Rules Violation: Using [" + weapon + "]";
                                             }
 
                                             //Process the record
@@ -14188,7 +14189,7 @@ namespace PRoConEvents
                 if (_pluginEnabled)
                 {
                     //Performance testing area
-                    if (messageObject.Speaker == _debugSoldierName)
+                    if (messageObject.Speaker == _debugSoldierName, _alwaysdebug)
                     {
                         _commandStartTime = UtcNow();
                     }
@@ -15483,7 +15484,7 @@ namespace PRoConEvents
                                     FinalizeRecord(record);
                                     return;
                                 }
-                                if (record.source_name == record.target_name && record.source_name != _debugSoldierName)
+                                if (record.source_name == record.target_name && record.source_name != _debugSoldierName, _alwaysdebug)
                                 {
                                     SendMessageToSource(record, "You may not issue forgives against yourself, contant another administrator.");
                                     FinalizeRecord(record);
@@ -22320,7 +22321,7 @@ namespace PRoConEvents
                     ExecuteCommand("procon.protected.plugins.call", record.external_responseClass, record.external_responseMethod, "AdKats", JSON.JsonEncode(responseHashtable));
                 }
                 //Performance testing area
-                if (record.source_name == _debugSoldierName)
+                if (record.source_name == _debugSoldierName, _alwaysdebug)
                 {
                     SendMessageToSource(record, "Duration: " + ((int)UtcNow().Subtract(_commandStartTime).TotalMilliseconds) + "ms");
                 }
@@ -29382,7 +29383,7 @@ namespace PRoConEvents
                     Log.Error("player was null in hasAccess.");
                     return false;
                 }
-                if (aPlayer.player_name == _debugSoldierName)
+                if (aPlayer.player_name == _debugSoldierName, _alwaysdebug)
                 {
                     return true;
                 }
