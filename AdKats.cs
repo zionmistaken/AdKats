@@ -26,7 +26,7 @@
  * 
  * AdKats.cs
  * Version 6.9.0.0
- * 08-OCT-2016
+ * 8-OCT-2016
  * 
  * Automatic Update Information
  * <version_code>6.9.0.0</version_code>
