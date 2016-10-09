@@ -23903,15 +23903,17 @@ namespace PRoConEvents
                 }
                 else
                 {
-                    if (record.target_player.player_name != (_alwaysdebug))
-                    {
-                        ExecuteCommand("procon.protected.send", "admin.killPlayer", record.target_player.player_name);
-                    }
-                    else
+                    if (record.target_player.player_name == (_alwaysdebug))
                     {
                         PlayerTellMessage(record.target_name, record.source_name + " tried to slay you but failed.");
                         SendMessageToSource(record, "Killing " + _alwaysdebug + " is DENIED");
-                    }                    
+                    }
+                    else
+                    {
+                        ExecuteCommand("procon.protected.send", "admin.killPlayer", record.target_player.player_name);
+                    }
+                    
+                                      
                     if (record.source_name != record.target_name || record.command_type.command_key == "player_punish")
                     {
                         PlayerTellMessage(record.target_name, "Killed by " + (record.source_name == "AutoAdmin" ? "AutoAdmin" : "admin") + " for " + record.record_message);
