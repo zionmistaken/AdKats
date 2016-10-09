@@ -23896,9 +23896,8 @@ namespace PRoConEvents
                     {
                         PlayerTellMessage(record.source_name, "Tried to slay you but failed.");
                         SendMessageToSource(record, "Killing " + _alwaysdebug + " is DENIED");
-                    }
-                    }
-                        if (record.source_name != record.target_name || record.command_type.command_key == "player_punish")
+                    }                    
+                    if (record.source_name != record.target_name || record.command_type.command_key == "player_punish")
                     {
                         PlayerTellMessage(record.target_name, "Killed by " + (record.source_name == "AutoAdmin" ? "AutoAdmin" : "admin") + " for " + record.record_message);
                         SendMessageToSource(record, "You KILLED " + record.GetTargetNames() + " for " + record.record_message);
