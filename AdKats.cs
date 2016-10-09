@@ -66,6 +66,7 @@ using PRoCon.Core.Players.Items;
 using PRoCon.Core.Plugin;
 using PRoCon.Core.Plugin.Commands;
 using PRoCon.Core.Maps;
+using Timer = System.Timers.Timer;
 
 namespace PRoConEvents
 {
