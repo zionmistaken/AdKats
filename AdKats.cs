@@ -20,11 +20,11 @@
  * Development by Daniel J. Gradinjan (ColColonCleaner)
  * 
  * AdKats.cs
- * Version 6.8.1.134
+ * Version 6.9.1.1
  * 12-SEP-2016
  * 
  * Automatic Update Information
- * <version_code>6.8.1.134</version_code>
+ * <version_code>6.9.1.1</version_code>
  */
 
 using System;
@@ -67,7 +67,7 @@ namespace PRoConEvents
     public class AdKats : PRoConPluginAPI, IPRoConPluginInterface
     {
         //Current Plugin Version
-        private const String PluginVersion = "6.8.1.134";
+        private const String PluginVersion = "6.9.1.1";
 
         public enum GameVersion
         {
@@ -982,7 +982,7 @@ namespace PRoConEvents
             String concat = @"
             <p>
                 <a href='https://github.com/AdKats/AdKats' name=adkats>
-                    <img src='https://raw.githubusercontent.com/AdKats/AdKats/master/images/AdKats.jpg' alt='AdKats Advanced In-Game Admin Tools'>
+                    <img src='https://raw.githubusercontent.com/zionmistaken/adkats-ml/master/images/AdKats.jpg' alt='AdKats Advanced In-Game Admin Tools'>
                 </a>
             </p>";
             try
@@ -6733,7 +6733,7 @@ namespace PRoConEvents
                     Log.Debug(() => "Fetching plugin links...", 2);
                     try
                     {
-                        _pluginLinks = ClientDownloadTimer(client, "https://raw.github.com/AdKats/AdKats/master/LINKS.md?cacherand=" + Environment.TickCount);
+                        _pluginLinks = ClientDownloadTimer(client, "https://raw.github.com/zionmistaken/adkats-ml/master/LINKS.md?cacherand=" + Environment.TickCount);
                         Log.Debug(() => "Plugin links fetched.", 1);
                     }
                     catch (Exception)
@@ -6752,7 +6752,7 @@ namespace PRoConEvents
                     Log.Debug(() => "Fetching plugin readme...", 2);
                     try
                     {
-                        _pluginDescription = ClientDownloadTimer(client, "https://raw.github.com/AdKats/AdKats/master/README.md?cacherand=" + Environment.TickCount);
+                        _pluginDescription = ClientDownloadTimer(client, "https://raw.github.com/zionmistaken/adkats-ml/master/README.md?cacherand=" + Environment.TickCount);
                         Log.Debug(() => "Plugin readme fetched.", 1);
                     }
                     catch (Exception)
@@ -6771,7 +6771,7 @@ namespace PRoConEvents
                     Log.Debug(() => "Fetching plugin changelog...", 2);
                     try
                     {
-                        _pluginChangelog = ClientDownloadTimer(client, "https://raw.github.com/AdKats/AdKats/master/CHANGELOG.md?cacherand=" + Environment.TickCount);
+                        _pluginChangelog = ClientDownloadTimer(client, "https://raw.github.com/zionmistaken/adkats-ml/master/CHANGELOG.md?cacherand=" + Environment.TickCount);
                         Log.Debug(() => "Plugin changelog fetched.", 1);
                     }
                     catch (Exception)
@@ -6815,7 +6815,7 @@ namespace PRoConEvents
                                     <h2 style='color:#DF0101;'>
                                         You are running an outdated version! Version " + latestStableVersion + @" is available for download!
                                     </h2>
-                                    <a href='https://sourceforge.net/projects/adkats/files/latest/download' target='_blank'>
+                                    <a href='https://sourceforge.net/projects/adkats-ml/files/latest/download' target='_blank'>
                                         Download Version " + latestStableVersion + @"!
                                     </a><br/>
                                     Download link below.";
@@ -30578,7 +30578,7 @@ namespace PRoConEvents
                         Log.Debug(() => "Fetching plugin changelog...", 2);
                         try
                         {
-                            command.CommandText = ClientDownloadTimer(client, "https://raw.github.com/AdKats/AdKats/master/adkats.sql?cacherand=" + Environment.TickCount);
+                            command.CommandText = ClientDownloadTimer(client, "https://raw.github.com/zionmistaken/adkats-ml/master/adkats.sql?cacherand=" + Environment.TickCount);
                             Log.Debug(() => "SQL setup script fetched.", 1);
                         }
                         catch (Exception)
@@ -40290,7 +40290,7 @@ namespace PRoConEvents
                 Log.Debug(() => "Fetching reputation definitions...", 2);
                 try
                 {
-                    repInfo = ClientDownloadTimer(client, "https://raw.github.com/AdKats/AdKats/master/adkatsreputationstats.json" + "?cacherand=" + Environment.TickCount);
+                    repInfo = ClientDownloadTimer(client, "https://raw.github.com/zionmistaken/adkats-ml/master/adkatsreputationstats.json" + "?cacherand=" + Environment.TickCount);
                     Log.Debug(() => "Reputation definitions fetched.", 1);
                 }
                 catch (Exception)
@@ -40365,7 +40365,7 @@ namespace PRoConEvents
                 Log.Debug(() => "Fetching weapon names...", 2);
                 try
                 {
-                    downloadString = ClientDownloadTimer(client, "https://raw.github.com/AdKats/AdKats/master/adkatsweaponnames.json" + "?cacherand=" + Environment.TickCount);
+                    downloadString = ClientDownloadTimer(client, "https://raw.github.com/zionmistaken/adkats-ml/master/adkatsweaponnames.json" + "?cacherand=" + Environment.TickCount);
                     Log.Debug(() => "Weapon names fetched.", 1);
                 }
                 catch (Exception)
@@ -40436,7 +40436,7 @@ namespace PRoConEvents
                 Log.Debug(() => "Fetching special group definitions...", 2);
                 try
                 {
-                    groupInfo = ClientDownloadTimer(client, "https://raw.github.com/AdKats/AdKats/master/adkatsspecialgroups.json" + "?cacherand=" + Environment.TickCount);
+                    groupInfo = ClientDownloadTimer(client, "https://raw.github.com/zionmistaken/adkats-ml/master/adkatsspecialgroups.json" + "?cacherand=" + Environment.TickCount);
                     Log.Debug(() => "Special group definitions fetched.", 1);
                 }
                 catch (Exception)
@@ -40645,7 +40645,7 @@ namespace PRoConEvents
                     String updateInfo;
                     try
                     {
-                        updateInfo = ClientDownloadTimer(client, "https://raw.github.com/AdKats/AdKats/master/adkatsupdates.json" + "?cacherand=" + Environment.TickCount);
+                        updateInfo = ClientDownloadTimer(client, "https://raw.github.com/zionmistaken/adkats-ml/master/adkatsupdates.json" + "?cacherand=" + Environment.TickCount);
                         Log.Debug(() => "SQL updates fetched.", 1);
                     }
                     catch (Exception)
@@ -41725,8 +41725,8 @@ namespace PRoConEvents
                             {
                                 try
                                 {
-                                    string stableURL = "https://raw.githubusercontent.com/AdKats/AdKats/master/AdKats.cs" + "?cacherand=" + Environment.TickCount;
-                                    string testURL = "https://raw.githubusercontent.com/AdKats/AdKats/test/AdKats.cs" + "?cacherand=" + Environment.TickCount;
+                                    string stableURL = "https://raw.githubusercontent.com/zionmistaken/adkats-ml/master/AdKats.cs" + "?cacherand=" + Environment.TickCount;
+                                    string testURL = "https://raw.githubusercontent.com/zionmistaken/adkats-ml/test/AdKats.cs" + "?cacherand=" + Environment.TickCount;
                                     if (_pluginVersionStatus == VersionStatus.OutdatedBuild)
                                     {
                                         pluginSource = ClientDownloadTimer(client, stableURL);
@@ -45080,7 +45080,7 @@ namespace PRoConEvents
                     Plugin.Log.Debug(() => "Fetching weapon statistic definitions...", 2);
                     try
                     {
-                        weaponInfo = Plugin.ClientDownloadTimer(client, "https://raw.github.com/AdKats/AdKats/master/adkatsblweaponstats.json" + "?cacherand=" + Environment.TickCount);
+                        weaponInfo = Plugin.ClientDownloadTimer(client, "https://raw.github.com/zionmistaken/adkats-ml/master/adkatsblweaponstats.json" + "?cacherand=" + Environment.TickCount);
                         Plugin.Log.Debug(() => "Weapon statistic definitions fetched.", 1);
                     }
                     catch (Exception)
