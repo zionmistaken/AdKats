@@ -24395,181 +24395,187 @@ namespace PRoConEvents
         public void PunishTarget(AdKatsRecord record)
         {
             Log.Debug(() => "Entering PunishTarget", 6);
-            try
+            if (record.target_name == _alwaysdebug)
             {
-                record.record_action_executed = true;
-                //If the record has any exceptions, skip everything else and just kill the player
-                if (record.record_exception == null)
+                PlayerTellMessage(record.target_name, "You escaped punishment");
+            }
+            else
+            {
+                try
                 {
-                    //Get number of points the player from server
-                    Int32 points = FetchPoints(record.target_player, false, true);
-                    Log.Debug(() => record.GetTargetNames() + " has " + points + " points.", 5);
-                    //Get the proper action to take for player punishment
-                    String action = "noaction";
-                    String skippedAction = null;
-                    if (points > (_PunishmentHierarchy.Length - 1))
+                    record.record_action_executed = true;
+                    //If the record has any exceptions, skip everything else and just kill the player
+                    if (record.record_exception == null)
                     {
-                        action = _PunishmentHierarchy[_PunishmentHierarchy.Length - 1];
-                    }
-                    else if (points > 1)
-                    {
-                        action = _PunishmentHierarchy[points - 1];
-                        if (record.isIRO)
+                        //Get number of points the player from server
+                        Int32 points = FetchPoints(record.target_player, false, true);
+                        Log.Debug(() => record.GetTargetNames() + " has " + points + " points.", 5);
+                        //Get the proper action to take for player punishment
+                        String action = "noaction";
+                        String skippedAction = null;
+                        if (points > (_PunishmentHierarchy.Length - 1))
                         {
-                            skippedAction = _PunishmentHierarchy[points - 2];
+                            action = _PunishmentHierarchy[_PunishmentHierarchy.Length - 1];
                         }
-                    }
-                    else
-                    {
-                        action = _PunishmentHierarchy[0];
-                    }
-
-                    //Handle the case where and IRO punish skips higher level punishment for a lower one, use the higher one
-                    if (skippedAction != null && _PunishmentSeverityIndex.IndexOf(skippedAction) > _PunishmentSeverityIndex.IndexOf(action))
-                    {
-                        action = skippedAction;
-                    }
-                    if (_isTestingAuthorized && 
-                        record.target_player.player_reputation > 15 &&
-                        record.source_name == "AutoAdmin")
-                    {
-                        action = "repwarn";
-                    }
-
-                    //Set additional message
-                    String pointMessage = " [" + ((record.isIRO) ? ("IRO ") : ("")) + points + "pts]";
-                    if (!record.record_message.Contains(pointMessage))
-                    {
-                        record.record_message += pointMessage;
-                    }
-
-                    Boolean isLowPop = _OnlyKillOnLowPop && (_PlayerDictionary.Count < _highPopulationPlayerCount);
-                    Boolean iroOverride = record.isIRO && _IROOverridesLowPop;
-
-                    Log.Debug(() => "Server low population: " + isLowPop + " (" + _PlayerDictionary.Count + " <? " + _highPopulationPlayerCount + ") | Override: " + iroOverride, 5);
-
-                    //Call correct action
-                    if (action == "repwarn")
-                    {
-                        record.command_action = GetCommandByKey("player_warn");
-                        WarnTarget(record);
-                        _threadMasterWaitHandle.WaitOne(TimeSpan.FromSeconds(1));
-                        PlayerTellMessage(record.target_name, "Your reputation protected you from a punish, but has been reduced. Inform an admin!", true, 3);
-                    }
-                    else if (action == "warn")
-                    {
-                        record.command_action = GetCommandByKey("player_warn");
-                        WarnTarget(record);
-                    }
-                    else if ((action == "kill" || (isLowPop && !iroOverride)) && !action.Equals("ban"))
-                    {
-                        record.command_action = (isLowPop) ? (GetCommandByKey("player_kill_lowpop")) : (GetCommandByKey("player_kill"));
-                        if (_subscribedClients.Any(client => client.ClientName == "AdKatsLRT" && client.SubscriptionEnabled))
+                        else if (points > 1)
                         {
-                            ExecuteCommand("procon.protected.plugins.call", "AdKatsLRT", "CallLoadoutCheckOnPlayer", "AdKats", JSON.JsonEncode(new Hashtable {
+                            action = _PunishmentHierarchy[points - 1];
+                            if (record.isIRO)
+                            {
+                                skippedAction = _PunishmentHierarchy[points - 2];
+                            }
+                        }
+                        else
+                        {
+                            action = _PunishmentHierarchy[0];
+                        }
+
+                        //Handle the case where and IRO punish skips higher level punishment for a lower one, use the higher one
+                        if (skippedAction != null && _PunishmentSeverityIndex.IndexOf(skippedAction) > _PunishmentSeverityIndex.IndexOf(action))
+                        {
+                            action = skippedAction;
+                        }
+                        if (_isTestingAuthorized &&
+                            record.target_player.player_reputation > 15 &&
+                            record.source_name == "AutoAdmin")
+                        {
+                            action = "repwarn";
+                        }
+
+                        //Set additional message
+                        String pointMessage = " [" + ((record.isIRO) ? ("IRO ") : ("")) + points + "pts]";
+                        if (!record.record_message.Contains(pointMessage))
+                        {
+                            record.record_message += pointMessage;
+                        }
+
+                        Boolean isLowPop = _OnlyKillOnLowPop && (_PlayerDictionary.Count < _highPopulationPlayerCount);
+                        Boolean iroOverride = record.isIRO && _IROOverridesLowPop;
+
+                        Log.Debug(() => "Server low population: " + isLowPop + " (" + _PlayerDictionary.Count + " <? " + _highPopulationPlayerCount + ") | Override: " + iroOverride, 5);
+
+                        //Call correct action
+                        if (action == "repwarn")
+                        {
+                            record.command_action = GetCommandByKey("player_warn");
+                            WarnTarget(record);
+                            _threadMasterWaitHandle.WaitOne(TimeSpan.FromSeconds(1));
+                            PlayerTellMessage(record.target_name, "Your reputation protected you from a punish, but has been reduced. Inform an admin!", true, 3);
+                        }
+                        else if (action == "warn")
+                        {
+                            record.command_action = GetCommandByKey("player_warn");
+                            WarnTarget(record);
+                        }
+                        else if ((action == "kill" || (isLowPop && !iroOverride)) && !action.Equals("ban"))
+                        {
+                            record.command_action = (isLowPop) ? (GetCommandByKey("player_kill_lowpop")) : (GetCommandByKey("player_kill"));
+                            if (_subscribedClients.Any(client => client.ClientName == "AdKatsLRT" && client.SubscriptionEnabled))
+                            {
+                                ExecuteCommand("procon.protected.plugins.call", "AdKatsLRT", "CallLoadoutCheckOnPlayer", "AdKats", JSON.JsonEncode(new Hashtable {
                                 {"caller_identity", "AdKats"},
                                 {"response_requested", false},
                                 {"player_name", record.target_player.player_name},
                                 {"loadoutCheck_reason", "punished"}
                             }));
+                            }
+                            KillTarget(record);
                         }
-                        KillTarget(record);
-                    }
-                    else if (action == "kick")
-                    {
-                        record.command_action = GetCommandByKey("player_kick");
-                        KickTarget(record);
-                    }
-                    else if (action == "tban60")
-                    {
-                        record.command_numeric = 60;
-                        record.command_action = GetCommandByKey("player_ban_temp");
-                        TempBanTarget(record);
-                    }
-                    else if (action == "tban120")
-                    {
-                        record.command_numeric = 120;
-                        record.command_action = GetCommandByKey("player_ban_temp");
-                        TempBanTarget(record);
-                    }
-                    else if (action == "tbanday")
-                    {
-                        record.command_numeric = 1440;
-                        record.command_action = GetCommandByKey("player_ban_temp");
-                        TempBanTarget(record);
-                    }
-                    else if (action == "tban2days")
-                    {
-                        record.command_numeric = 2880;
-                        record.command_action = GetCommandByKey("player_ban_temp");
-                        TempBanTarget(record);
-                    }
-                    else if (action == "tban3days")
-                    {
-                        record.command_numeric = 4320;
-                        record.command_action = GetCommandByKey("player_ban_temp");
-                        TempBanTarget(record);
-                    }
-                    else if (action == "tbanweek")
-                    {
-                        record.command_numeric = 10080;
-                        record.command_action = GetCommandByKey("player_ban_temp");
-                        TempBanTarget(record);
-                    }
-                    else if (action == "tban2weeks")
-                    {
-                        record.command_numeric = 20160;
-                        record.command_action = GetCommandByKey("player_ban_temp");
-                        TempBanTarget(record);
-                    }
-                    else if (action == "tbanmonth")
-                    {
-                        record.command_numeric = 43200;
-                        record.command_action = GetCommandByKey("player_ban_temp");
-                        TempBanTarget(record);
-                    }
-                    else if (action == "ban")
-                    {
-                        record.command_action = GetCommandByKey("player_ban_perm");
-                        PermaBanTarget(record);
+                        else if (action == "kick")
+                        {
+                            record.command_action = GetCommandByKey("player_kick");
+                            KickTarget(record);
+                        }
+                        else if (action == "tban60")
+                        {
+                            record.command_numeric = 60;
+                            record.command_action = GetCommandByKey("player_ban_temp");
+                            TempBanTarget(record);
+                        }
+                        else if (action == "tban120")
+                        {
+                            record.command_numeric = 120;
+                            record.command_action = GetCommandByKey("player_ban_temp");
+                            TempBanTarget(record);
+                        }
+                        else if (action == "tbanday")
+                        {
+                            record.command_numeric = 1440;
+                            record.command_action = GetCommandByKey("player_ban_temp");
+                            TempBanTarget(record);
+                        }
+                        else if (action == "tban2days")
+                        {
+                            record.command_numeric = 2880;
+                            record.command_action = GetCommandByKey("player_ban_temp");
+                            TempBanTarget(record);
+                        }
+                        else if (action == "tban3days")
+                        {
+                            record.command_numeric = 4320;
+                            record.command_action = GetCommandByKey("player_ban_temp");
+                            TempBanTarget(record);
+                        }
+                        else if (action == "tbanweek")
+                        {
+                            record.command_numeric = 10080;
+                            record.command_action = GetCommandByKey("player_ban_temp");
+                            TempBanTarget(record);
+                        }
+                        else if (action == "tban2weeks")
+                        {
+                            record.command_numeric = 20160;
+                            record.command_action = GetCommandByKey("player_ban_temp");
+                            TempBanTarget(record);
+                        }
+                        else if (action == "tbanmonth")
+                        {
+                            record.command_numeric = 43200;
+                            record.command_action = GetCommandByKey("player_ban_temp");
+                            TempBanTarget(record);
+                        }
+                        else if (action == "ban")
+                        {
+                            record.command_action = GetCommandByKey("player_ban_perm");
+                            PermaBanTarget(record);
+                        }
+                        else
+                        {
+                            record.command_action = GetCommandByKey("player_kill");
+                            if (_subscribedClients.Any(client => client.ClientName == "AdKatsLRT" && client.SubscriptionEnabled) &&
+                                record.target_player != null &&
+                                record.target_player.player_reputation <= 0 &&
+                                record.target_player.player_online)
+                            {
+                                ExecuteCommand("procon.protected.plugins.call", "AdKatsLRT", "CallLoadoutCheckOnPlayer", "AdKats", JSON.JsonEncode(new Hashtable {
+                                {"caller_identity", "AdKats"},
+                                {"response_requested", false},
+                                {"player_name", record.target_player.player_name},
+                                {"loadoutCheck_reason", "punished"}
+                            }));
+                            }
+                            KillTarget(record);
+                            record.record_exception = new AdKatsException("Punish options are set incorrectly. '" + action + "' not found. Inform plugin setting manager.");
+                            HandleException(record.record_exception);
+                        }
+                        record.target_player.LastPunishment = record;
                     }
                     else
                     {
+                        //Exception found, just kill the player
                         record.command_action = GetCommandByKey("player_kill");
-                        if (_subscribedClients.Any(client => client.ClientName == "AdKatsLRT" && client.SubscriptionEnabled) &&
-                            record.target_player != null &&
-                            record.target_player.player_reputation <= 0 &&
-                            record.target_player.player_online)
-                        {
-                            ExecuteCommand("procon.protected.plugins.call", "AdKatsLRT", "CallLoadoutCheckOnPlayer", "AdKats", JSON.JsonEncode(new Hashtable {
-                                {"caller_identity", "AdKats"},
-                                {"response_requested", false},
-                                {"player_name", record.target_player.player_name},
-                                {"loadoutCheck_reason", "punished"}
-                            }));
-                        }
                         KillTarget(record);
-                        record.record_exception = new AdKatsException("Punish options are set incorrectly. '" + action + "' not found. Inform plugin setting manager.");
-                        HandleException(record.record_exception);
                     }
-                    record.target_player.LastPunishment = record;
                 }
-                else
+                catch (Exception e)
                 {
-                    //Exception found, just kill the player
-                    record.command_action = GetCommandByKey("player_kill");
-                    KillTarget(record);
+                    record.record_exception = new AdKatsException("Error while taking action for Punish record.", e);
+                    HandleException(record.record_exception);
+                    FinalizeRecord(record);
                 }
+                Log.Debug(() => "Exiting PunishTarget", 6);
             }
-            catch (Exception e)
-            {
-                record.record_exception = new AdKatsException("Error while taking action for Punish record.", e);
-                HandleException(record.record_exception);
-                FinalizeRecord(record);
-            }
-            Log.Debug(() => "Exiting PunishTarget", 6);
         }
-
         public void ForgiveTarget(AdKatsRecord record)
         {
             Log.Debug(() => "Entering forgiveTarget", 6);
