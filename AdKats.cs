@@ -405,7 +405,7 @@ namespace PRoConEvents
         private List<String> _CommandTargetWhitelistCommands = new List<string>();
         private Int32 _RequiredReasonLength = 4;
         //Commands specific
-        private String _ServerVoipAddress = "(TS3) TS.ADKGamers.com:3796";
+        private String _ServerVoipAddress = "TeamSpeak ts.whendarknessfalls.org";
         //Dynamic access
         public Func<AdKats, AdKatsPlayer, Boolean> AAPerkFunc = ((plugin, aPlayer) => ((plugin._EnableAdminAssistantPerk && aPlayer.player_aa) || (aPlayer.player_reputation > _reputationThresholdGood)));
         public Func<AdKats, AdKatsPlayer, Boolean> TeamSwapFunc = ((plugin, aPlayer) => ((plugin._EnableAdminAssistantPerk && aPlayer.player_aa) || plugin.GetMatchingVerboseASPlayersOfGroup("whitelist_teamswap", aPlayer).Any()));
@@ -897,12 +897,12 @@ namespace PRoConEvents
 
             //Init the pre-message list
             _PreMessageList = new List<String> {
-                "US TEAM: DO NOT BASERAPE, YOU WILL BE PUNISHED.",
-                "RU TEAM: DO NOT BASERAPE, YOU WILL BE PUNISHED.",
-                "US TEAM: DO NOT ENTER THE STREETS BEYOND 'A', YOU WILL BE PUNISHED.",
-                "RU TEAM: DO NOT GO BEYOND THE BLACK LINE ON CEILING BY 'C' FLAG, YOU WILL BE PUNISHED.",
-                "THIS SERVER IS NO EXPLOSIVES, YOU WILL BE PUNISHED FOR INFRACTIONS.",
-                "JOIN OUR TEAMSPEAK AT TS.ADKGAMERS.COM:3796"
+                "THIRD FLOOR GLITCHING AT 'A' is NOT ALLOWED",
+                "NO THROWABLES! NO GRENADES AND NO SMOKE/FLARE/FLASHBANG!",
+                "NO EXPLOSIVES!  NO CLAYMORES NO FRAG ROUNDS NO C4 NO RPG",
+                "PISTOLS ONLY!  NO SHORTY!  NO 93R or G18!  MARE'S LEG IS ALLOWED.",
+                "NO RACIST / HOMOPHOBIC / BIGOTED COMMENTS - PUNISHMENT IS PERMABAN",
+                "JOIN OUR TEAMSPEAK AT TS.WHENDARKNESSFALLS.ORG"
             };
 
             //Init the spam message lists
@@ -960,7 +960,7 @@ namespace PRoConEvents
 
         public String GetPluginName()
         {
-            return "AdKats - Advanced In-Game Admin";
+            return "AdKats - Custom ML Version";
         }
 
         public String GetPluginVersion()
@@ -970,19 +970,19 @@ namespace PRoConEvents
 
         public String GetPluginAuthor()
         {
-            return "[ADK]ColColonCleaner";
+            return "[ML] ZionMistaken";
         }
 
         public String GetPluginWebsite()
         {
-            return "https://github.com/AdKats/";
+            return "https://github.com/zionmistaken/adkats-ml/";
         }
 
         public String GetPluginDescription()
         {
             String concat = @"
             <p>
-                <a href='https://github.com/AdKats/AdKats' name=adkats>
+                <a href='https://github.com/zionmistaken/adkats-ml' name=adkats>
                     <img src='https://raw.githubusercontent.com/zionmistaken/adkats-ml/master/images/AdKats.jpg' alt='AdKats Advanced In-Game Admin Tools'>
                 </a>
             </p>";
@@ -10382,7 +10382,7 @@ namespace PRoConEvents
                                 PostVersionTracking();
                             }
 
-                            //Only activate the following on ADK servers.
+                            //Allow Experimental Features on ALL servers
                             Boolean wasADK = _isTestingAuthorized;
                             _isTestingAuthorized = serverInfo.ServerName.Contains("");
                             if (!wasADK && _isTestingAuthorized)
@@ -10391,7 +10391,7 @@ namespace PRoConEvents
                                 if (_gameVersion != GameVersion.BF3)
                                 {
                                     _FeedStatLoggerSettings = true;
-                                    _PostStatLoggerChatManually = true;
+                                    _PostStatLoggerChatManually = false; 
                                     _UseTopPlayerMonitor = true;
 
                                     if (_serverInfo.ServerType != "OFFICIAL")
@@ -12571,8 +12571,7 @@ namespace PRoConEvents
                         }
                     }
 
-                    if (_AutomaticForgives && 
-                        aPlayer.player_reputation >= 0 && 
+                    if (_AutomaticForgives &&                        
                         aPlayer.player_infractionPoints > 0 && 
                         aPlayer.LastPunishment != null && 
                         (UtcNow() - aPlayer.LastPunishment.record_time).TotalDays > _AutomaticForgiveLastPunishDays && 
@@ -16518,7 +16517,7 @@ namespace PRoConEvents
                                 AdKatsTeam team1, team2, winningTeam, losingTeam;
                                 if (GetTeamByID(1, out team1) && 
                                     GetTeamByID(2, out team2) &&
-                                    (team1.TeamTicketCount < 450 || team2.TeamTicketCount < 450)) {
+                                    (team1.TeamTicketCount < 300 || team2.TeamTicketCount < 300)) {
                                     SendMessageToSource(record, "Too late in round to perform moves.");
                                     FinalizeRecord(record);
                                     return;
@@ -16571,7 +16570,7 @@ namespace PRoConEvents
                                 AdKatsTeam team1, team2;
                                 if (GetTeamByID(1, out team1) &&
                                     GetTeamByID(2, out team2) &&
-                                    (team1.TeamTicketCount < 450 || team2.TeamTicketCount < 450)) {
+                                    (team1.TeamTicketCount < 50 || team2.TeamTicketCount < 50)) {
                                     SendMessageToSource(record, "Too late in round to perform moves.");
                                     FinalizeRecord(record);
                                     return;
@@ -29783,7 +29782,7 @@ namespace PRoConEvents
                         if (_isTestingAuthorized)
                         {
                             _FeedStatLoggerSettings = true;
-                            _PostStatLoggerChatManually = true;
+                            _PostStatLoggerChatManually = false;
                         }
                         if (_statLoggerVersion == "BF3")
                         {
@@ -29828,8 +29827,8 @@ namespace PRoConEvents
                             }
                             if (_PostStatLoggerChatManually)
                             {
-                                SetExternalPluginSetting("CChatGUIDStatsLogger", "Enable Chatlogging?", "No");
-                                SetExternalPluginSetting("CChatGUIDStatsLogger", "Instant Logging of Chat Messages?", "No");
+                                SetExternalPluginSetting("CChatGUIDStatsLogger", "Enable Chatlogging?", "Yes");
+                                SetExternalPluginSetting("CChatGUIDStatsLogger", "Instant Logging of Chat Messages?", "Yes");
                             }
                             else if (_FeedStatLoggerSettings)
                             {
