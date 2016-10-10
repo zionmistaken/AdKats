@@ -783,8 +783,8 @@ namespace PRoConEvents
         private Boolean _UseGrenadeCookCatcher;
         private Dictionary<String, AdKatsPlayer> _RoundCookers = new Dictionary<String, AdKatsPlayer>();
         private Boolean _UseWeaponLimiter;
-        private String _WeaponLimiterExceptionString = "_Flechette|_Slug";
-        private String _WeaponLimiterString = "M320|RPG|SMAW|C4|M67|Claymore|FGM-148|FIM92|ROADKILL|Death|_LVG|_HE|_Frag|_XM25|_FLASH|_V40|_M34|_Flashbang|_SMK|_Smoke|_FGM148|_Grenade|_SLAM|_NLAW|_RPG7|_C4|_Claymore|_FIM92|_M67|_SMAW|_SRAW|_Sa18IGLA|_Tomahawk";
+        private String _WeaponLimiterExceptionString = "_Flechette|_Slug|_Buck|_SHG";
+        private String _WeaponLimiterString = "M320|RPG|SMAW|C4|M67|Claymore|FGM-148|FIM92|USAS-12|USAS-12_Nightvision|USAS-12_SP|_LVG|_HE|_Frag|_XM25|_FLASH|_V40|_M34|_Flashbang|_SMK|_Smoke|_FGM148|_Grenade|_SLAM|_NLAW|_RPG7|_C4|_Claymore|_FIM92|_M67|_SMAW|_SRAW|_Sa18IGLA|_Tomahawk";
         private readonly HashSet<String> _DetectedWeaponCodes = new HashSet<String>();
         public Dictionary<String, DamageTypes> WeaponTypeDictionary = null;
 
