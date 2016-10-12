@@ -20,11 +20,11 @@
  * Development by Daniel J. Gradinjan (ColColonCleaner)
  * 
  * AdKats.cs
- * Version 6.9.1.3
+ * Version 6.9.1.4
  * 12-SEP-2016
  * 
  * Automatic Update Information
- * <version_code>6.9.1.3</version_code>
+ * <version_code>6.9.1.4</version_code>
  */
 
 using System;
@@ -67,7 +67,7 @@ namespace PRoConEvents
     public class AdKats : PRoConPluginAPI, IPRoConPluginInterface
     {
         //Current Plugin Version
-        private const String PluginVersion = "6.9.1.3";
+        private const String PluginVersion = "6.9.1.4";
 
         public enum GameVersion
         {
@@ -4927,186 +4927,186 @@ namespace PRoConEvents
                                         command.command_access = AdKatsCommand.CommandAccess.Any;
                                     }
                                     break;
-                                case "player_kill":
-                                    if (_isTestingAuthorized)
-                                    {
-                                        if (command.command_access != AdKatsCommand.CommandAccess.GlobalVisible)
-                                        {
-                                            Log.Warn(command.command_name + " access must be 'GlobalVisible'. Resetting.");
-                                            command.command_access = AdKatsCommand.CommandAccess.GlobalVisible;
-                                        }
-                                    }
-                                    break;
-                                case "player_kick":
-                                    if (_isTestingAuthorized)
-                                    {
-                                        if (command.command_access != AdKatsCommand.CommandAccess.GlobalVisible)
-                                        {
-                                            Log.Warn(command.command_name + " access must be 'GlobalVisible'. Resetting.");
-                                            command.command_access = AdKatsCommand.CommandAccess.GlobalVisible;
-                                        }
-                                    }
-                                    break;
-                                case "player_ban_temp":
-                                    if (_isTestingAuthorized)
-                                    {
-                                        if (command.command_access != AdKatsCommand.CommandAccess.GlobalVisible)
-                                        {
-                                            Log.Warn(command.command_name + " access must be 'GlobalVisible'. Resetting.");
-                                            command.command_access = AdKatsCommand.CommandAccess.GlobalVisible;
-                                        }
-                                    }
-                                    break;
-                                case "player_ban_perm":
-                                    if (_isTestingAuthorized)
-                                    {
-                                        if (command.command_access != AdKatsCommand.CommandAccess.GlobalVisible)
-                                        {
-                                            Log.Warn(command.command_name + " access must be 'GlobalVisible'. Resetting.");
-                                            command.command_access = AdKatsCommand.CommandAccess.GlobalVisible;
-                                        }
-                                    }
-                                    break;
-                                case "player_punish":
-                                    if (_isTestingAuthorized)
-                                    {
-                                        if (command.command_access != AdKatsCommand.CommandAccess.GlobalVisible)
-                                        {
-                                            Log.Warn(command.command_name + " access must be 'GlobalVisible'. Resetting.");
-                                            command.command_access = AdKatsCommand.CommandAccess.GlobalVisible;
-                                        }
-                                    }
-                                    break;
-                                case "player_mute":
-                                    if (_isTestingAuthorized)
-                                    {
-                                        if (command.command_access != AdKatsCommand.CommandAccess.GlobalVisible)
-                                        {
-                                            Log.Warn(command.command_name + " access must be 'GlobalVisible'. Resetting.");
-                                            command.command_access = AdKatsCommand.CommandAccess.GlobalVisible;
-                                        }
-                                    }
-                                    break;
-                                case "self_kill":
-                                    if (_isTestingAuthorized)
-                                    {
-                                        if (command.command_access != AdKatsCommand.CommandAccess.GlobalVisible)
-                                        {
-                                            Log.Warn(command.command_name + " access must be 'GlobalVisible'. Resetting.");
-                                            command.command_access = AdKatsCommand.CommandAccess.GlobalVisible;
-                                        }
-                                    }
-                                    break;
-                                case "admin_say":
-                                    if (_isTestingAuthorized)
-                                    {
-                                        if (command.command_access != AdKatsCommand.CommandAccess.AnyHidden)
-                                        {
-                                            Log.Warn(command.command_name + " access must be 'AnyHidden'. Resetting.");
-                                            command.command_access = AdKatsCommand.CommandAccess.AnyHidden;
-                                        }
-                                    }
-                                    break;
-                                case "player_say":
-                                    if (_isTestingAuthorized)
-                                    {
-                                        if (command.command_access != AdKatsCommand.CommandAccess.AnyHidden)
-                                        {
-                                            Log.Warn(command.command_name + " access must be 'AnyHidden'. Resetting.");
-                                            command.command_access = AdKatsCommand.CommandAccess.AnyHidden;
-                                        }
-                                    }
-                                    break;
-                                case "admin_yell":
-                                    if (_isTestingAuthorized)
-                                    {
-                                        if (command.command_access != AdKatsCommand.CommandAccess.AnyHidden)
-                                        {
-                                            Log.Warn(command.command_name + " access must be 'AnyHidden'. Resetting.");
-                                            command.command_access = AdKatsCommand.CommandAccess.AnyHidden;
-                                        }
-                                    }
-                                    break;
-                                case "player_yell":
-                                    if (_isTestingAuthorized)
-                                    {
-                                        if (command.command_access != AdKatsCommand.CommandAccess.AnyHidden)
-                                        {
-                                            Log.Warn(command.command_name + " access must be 'AnyHidden'. Resetting.");
-                                            command.command_access = AdKatsCommand.CommandAccess.AnyHidden;
-                                        }
-                                    }
-                                    break;
-                                case "admin_tell":
-                                    if (_isTestingAuthorized)
-                                    {
-                                        if (command.command_access != AdKatsCommand.CommandAccess.AnyHidden)
-                                        {
-                                            Log.Warn(command.command_name + " access must be 'AnyHidden'. Resetting.");
-                                            command.command_access = AdKatsCommand.CommandAccess.AnyHidden;
-                                        }
-                                    }
-                                    break;
-                                case "player_tell":
-                                    if (_isTestingAuthorized)
-                                    {
-                                        if (command.command_access != AdKatsCommand.CommandAccess.AnyHidden)
-                                        {
-                                            Log.Warn(command.command_name + " access must be 'AnyHidden'. Resetting.");
-                                            command.command_access = AdKatsCommand.CommandAccess.AnyHidden;
-                                        }
-                                    }
-                                    break;
-                                case "player_ban_perm_future":
-                                    if (_isTestingAuthorized)
-                                    {
-                                        if (command.command_access != AdKatsCommand.CommandAccess.GlobalVisible)
-                                        {
-                                            Log.Warn(command.command_name + " access must be 'GlobalVisible'. Resetting.");
-                                            command.command_access = AdKatsCommand.CommandAccess.GlobalVisible;
-                                        }
-                                    }
-                                    break;
-                                case "player_kill_force":
-                                    if (_isTestingAuthorized)
-                                    {
-                                        if (command.command_access != AdKatsCommand.CommandAccess.GlobalVisible)
-                                        {
-                                            Log.Warn(command.command_name + " access must be 'GlobalVisible'. Resetting.");
-                                            command.command_access = AdKatsCommand.CommandAccess.GlobalVisible;
-                                        }
-                                    }
-                                    break;
-                                case "player_info":
-                                    if (_isTestingAuthorized)
-                                    {
-                                        if (command.command_access != AdKatsCommand.CommandAccess.AnyHidden)
-                                        {
-                                            Log.Warn(command.command_name + " access must be 'AnyHidden'. Resetting.");
-                                            command.command_access = AdKatsCommand.CommandAccess.AnyHidden;
-                                        }
-                                    }
-                                    break;
-                                case "player_find":
-                                    if (_isTestingAuthorized)
-                                    {
-                                        if (command.command_access != AdKatsCommand.CommandAccess.AnyHidden)
-                                        {
-                                            Log.Warn(command.command_name + " access must be 'AnyHidden'. Resetting.");
-                                            command.command_access = AdKatsCommand.CommandAccess.AnyHidden;
-                                        }
-                                    }
-                                    break;
-                                case "self_reportlist":
-                                    if (_isTestingAuthorized)
-                                    {
-                                        if (command.command_access != AdKatsCommand.CommandAccess.AnyHidden)
-                                        {
-                                            Log.Warn(command.command_name + " access must be 'AnyHidden'. Resetting.");
-                                            command.command_access = AdKatsCommand.CommandAccess.AnyHidden;
-                                        }
-                                    }
-                                    break;
+                                //case "player_kill":
+                                //    if (_isTestingAuthorized)
+                                //    {
+                                //        if (command.command_access != AdKatsCommand.CommandAccess.GlobalVisible)
+                                //        {
+                                //            Log.Warn(command.command_name + " access must be 'GlobalVisible'. Resetting.");
+                                //            command.command_access = AdKatsCommand.CommandAccess.GlobalVisible;
+                                //        }
+                                //    }
+                                //    break;
+                                //case "player_kick":
+                                //    if (_isTestingAuthorized)
+                                //    {
+                                //        if (command.command_access != AdKatsCommand.CommandAccess.GlobalVisible)
+                                //        {
+                                //            Log.Warn(command.command_name + " access must be 'GlobalVisible'. Resetting.");
+                                //            command.command_access = AdKatsCommand.CommandAccess.GlobalVisible;
+                                //        }
+                                //    }
+                                //    break;
+                                //case "player_ban_temp":
+                                //    if (_isTestingAuthorized)
+                                //    {
+                                //        if (command.command_access != AdKatsCommand.CommandAccess.GlobalVisible)
+                                //        {
+                                //            Log.Warn(command.command_name + " access must be 'GlobalVisible'. Resetting.");
+                                //            command.command_access = AdKatsCommand.CommandAccess.GlobalVisible;
+                                //        }
+                                //    }
+                                //    break;
+                                //case "player_ban_perm":
+                                //    if (_isTestingAuthorized)
+                                //    {
+                                //        if (command.command_access != AdKatsCommand.CommandAccess.GlobalVisible)
+                                //        {
+                                //            Log.Warn(command.command_name + " access must be 'GlobalVisible'. Resetting.");
+                                //            command.command_access = AdKatsCommand.CommandAccess.GlobalVisible;
+                                //        }
+                                //    }
+                                //    break;
+                                //case "player_punish":
+                                //    if (_isTestingAuthorized)
+                                //    {
+                                //        if (command.command_access != AdKatsCommand.CommandAccess.GlobalVisible)
+                                //        {
+                                //            Log.Warn(command.command_name + " access must be 'GlobalVisible'. Resetting.");
+                                //            command.command_access = AdKatsCommand.CommandAccess.GlobalVisible;
+                                //        }
+                                //    }
+                                //    break;
+                                //case "player_mute":
+                                //    if (_isTestingAuthorized)
+                                //    {
+                                //        if (command.command_access != AdKatsCommand.CommandAccess.GlobalVisible)
+                                //        {
+                                //            Log.Warn(command.command_name + " access must be 'GlobalVisible'. Resetting.");
+                                //            command.command_access = AdKatsCommand.CommandAccess.GlobalVisible;
+                                //        }
+                                //    }
+                                //    break;
+                                //case "self_kill":
+                                //    if (_isTestingAuthorized)
+                                //    {
+                                //        if (command.command_access != AdKatsCommand.CommandAccess.GlobalVisible)
+                                //        {
+                                //            Log.Warn(command.command_name + " access must be 'GlobalVisible'. Resetting.");
+                                //            command.command_access = AdKatsCommand.CommandAccess.GlobalVisible;
+                                //        }
+                                //    }
+                                //    break;
+                                //case "admin_say":
+                                //    if (_isTestingAuthorized)
+                                //    {
+                                //        if (command.command_access != AdKatsCommand.CommandAccess.AnyHidden)
+                                //        {
+                                //            Log.Warn(command.command_name + " access must be 'AnyHidden'. Resetting.");
+                                //            command.command_access = AdKatsCommand.CommandAccess.AnyHidden;
+                                //        }
+                                //    }
+                                //    break;
+                                //case "player_say":
+                                //    if (_isTestingAuthorized)
+                                //    {
+                                //        if (command.command_access != AdKatsCommand.CommandAccess.AnyHidden)
+                                //        {
+                                //            Log.Warn(command.command_name + " access must be 'AnyHidden'. Resetting.");
+                                //            command.command_access = AdKatsCommand.CommandAccess.AnyHidden;
+                                //        }
+                                //    }
+                                //    break;
+                                //case "admin_yell":
+                                //    if (_isTestingAuthorized)
+                                //    {
+                                //        if (command.command_access != AdKatsCommand.CommandAccess.AnyHidden)
+                                //        {
+                                //            Log.Warn(command.command_name + " access must be 'AnyHidden'. Resetting.");
+                                //            command.command_access = AdKatsCommand.CommandAccess.AnyHidden;
+                                //        }
+                                //    }
+                                //    break;
+                                //case "player_yell":
+                                //    if (_isTestingAuthorized)
+                                //    {
+                                //        if (command.command_access != AdKatsCommand.CommandAccess.AnyHidden)
+                                //        {
+                                //            Log.Warn(command.command_name + " access must be 'AnyHidden'. Resetting.");
+                                //            command.command_access = AdKatsCommand.CommandAccess.AnyHidden;
+                                //        }
+                                //    }
+                                //    break;
+                                //case "admin_tell":
+                                //    if (_isTestingAuthorized)
+                                //    {
+                                //        if (command.command_access != AdKatsCommand.CommandAccess.AnyHidden)
+                                //        {
+                                //            Log.Warn(command.command_name + " access must be 'AnyHidden'. Resetting.");
+                                //            command.command_access = AdKatsCommand.CommandAccess.AnyHidden;
+                                //        }
+                                //    }
+                                //    break;
+                                //case "player_tell":
+                                //    if (_isTestingAuthorized)
+                                //    {
+                                //        if (command.command_access != AdKatsCommand.CommandAccess.AnyHidden)
+                                //        {
+                                //            Log.Warn(command.command_name + " access must be 'AnyHidden'. Resetting.");
+                                //            command.command_access = AdKatsCommand.CommandAccess.AnyHidden;
+                                //        }
+                                //    }
+                                //    break;
+                                //case "player_ban_perm_future":
+                                //    if (_isTestingAuthorized)
+                                //    {
+                                //        if (command.command_access != AdKatsCommand.CommandAccess.GlobalVisible)
+                                //        {
+                                //            Log.Warn(command.command_name + " access must be 'GlobalVisible'. Resetting.");
+                                //            command.command_access = AdKatsCommand.CommandAccess.GlobalVisible;
+                                //        }
+                                //    }
+                                //    break;
+                                //case "player_kill_force":
+                                //    if (_isTestingAuthorized)
+                                //    {
+                                //        if (command.command_access != AdKatsCommand.CommandAccess.GlobalVisible)
+                                //        {
+                                //            Log.Warn(command.command_name + " access must be 'GlobalVisible'. Resetting.");
+                                //            command.command_access = AdKatsCommand.CommandAccess.GlobalVisible;
+                                //        }
+                                //    }
+                                //    break;
+                                //case "player_info":
+                                //    if (_isTestingAuthorized)
+                                //    {
+                                //        if (command.command_access != AdKatsCommand.CommandAccess.AnyHidden)
+                                //        {
+                                //            Log.Warn(command.command_name + " access must be 'AnyHidden'. Resetting.");
+                                //            command.command_access = AdKatsCommand.CommandAccess.AnyHidden;
+                                //        }
+                                //    }
+                                //    break;
+                                //case "player_find":
+                                //    if (_isTestingAuthorized)
+                                //    {
+                                //        if (command.command_access != AdKatsCommand.CommandAccess.AnyHidden)
+                                //        {
+                                //            Log.Warn(command.command_name + " access must be 'AnyHidden'. Resetting.");
+                                //            command.command_access = AdKatsCommand.CommandAccess.AnyHidden;
+                                //        }
+                                //    }
+                                //    break;
+                                //case "self_reportlist":
+                                //    if (_isTestingAuthorized)
+                                //    {
+                                //        if (command.command_access != AdKatsCommand.CommandAccess.AnyHidden)
+                                //        {
+                                //            Log.Warn(command.command_name + " access must be 'AnyHidden'. Resetting.");
+                                //            command.command_access = AdKatsCommand.CommandAccess.AnyHidden;
+                                //        }
+                                //    }
+                                //    break;
                             }
                         }
                         else
@@ -10389,8 +10389,7 @@ namespace PRoConEvents
                             {
                                 Log.Info("Server is testing authorized.");
                                 if (_gameVersion != GameVersion.BF3)
-                                {
-                                    _FeedStatLoggerSettings = true;
+                                {                                   
                                     _PostStatLoggerChatManually = false; 
                                     _UseTopPlayerMonitor = true;
 
@@ -10398,8 +10397,6 @@ namespace PRoConEvents
                                     {
                                         _pingEnforcerEnable = true;
                                         _pingEnforcerKickMissingPings = true;
-                                        _CMDRManagerEnable = true;
-                                        _surrenderVoteEnable = true;
                                     }
                                     if (_serverInfo.ServerName.Contains("#7") && _gameVersion == GameVersion.BF4)
                                     {
@@ -11938,7 +11935,7 @@ namespace PRoConEvents
                 try
                 {
                     if (_isTestingAuthorized &&
-                        _serverInfo.ServerID == 1 &&
+                        _serverInfo.ServerID == 25 &&
                         _roundID >= 25000 &&
                         _roundID <= 25009) {
                         if (aKill.killerCPI.TeamID != aKill.victimCPI.TeamID) {
@@ -12219,7 +12216,7 @@ namespace PRoConEvents
                                             };
                                             if (weapon == "EOD")
                                             {
-                                                record.record_message = "Rules: Roadkilling with EOD or MAV";
+                                                record.record_message = "Rules: Roadkilling with EOD";
                                             }
                                             else if (weapon == "EOD")
                                             {
@@ -12234,7 +12231,7 @@ namespace PRoConEvents
                                             }
                                             else
                                             {
-                                                record.record_message = "Rules Violation: Using [" + weapon + "]";
+                                                record.record_message = "Rules Violation: Using [" + weapon + "] [AutoMsg]";
                                             }
 
                                             //Process the record
@@ -12323,18 +12320,18 @@ namespace PRoConEvents
                         }
 
                         if (_isTestingAuthorized && _gameVersion == GameVersion.BF4) {
-                            if (_serverInfo.ServerName.Contains("EU #5")) {
+                            if (_serverInfo.ServerName.Contains("MeatLocker")) {
                                 StartAndLogThread(new Thread(new ThreadStart(delegate {
                                     Thread.CurrentThread.Name = "RoundWelcome";
                                     Thread.Sleep(TimeSpan.FromSeconds(17));
-                                    AdminTellMessage("Welcome to round " + String.Format("{0:n0}", _roundID) + " of Conquest Locker");
+                                    AdminTellMessage("Welcome to round " + String.Format("{0:n0}", _roundID) + " of The MeatLocker!");
                                     LogThreadExit();
                                 })));
-                            } else if (_serverInfo.ServerName.Contains("#5")) {
+                            } else if (_serverInfo.ServerName.Contains("Meatgrinder")) {
                                 StartAndLogThread(new Thread(new ThreadStart(delegate {
                                     Thread.CurrentThread.Name = "RoundWelcome";
                                     Thread.Sleep(TimeSpan.FromSeconds(17));
-                                    AdminTellMessage("Welcome to round " + String.Format("{0:n0}", _roundID) + " of VoteMap TDM");
+                                    AdminTellMessage("Welcome to round " + String.Format("{0:n0}", _roundID) + " of The Meatgrinder!");
                                     LogThreadExit();
                                 })));
                             } else if (_serverInfo.ServerName.Contains("#7")) {
@@ -15418,7 +15415,7 @@ namespace PRoConEvents
                         FinalizeRecord(record);
                         return;
                     }
-                    if (record.target_name == _alwaysdebug && (record.command_type.command_key == "player_kill" || record.command_type.command_key == "player_kick" || record.command_type.command_key == "player_ban_temp" || record.command_type.command_key == "player_ban_perm" || record.command_type.command_key == "player_ban_perm_future" || record.command_type.command_key == "player_punish" || record.command_type.command_key == "player_mute" || record.command_type.command_key == "player_move" || record.command_type.command_key == "player_fmove" || record.command_type.command_key == "LoadoutForceTarget" || record.command_type.command_key == "player_pull" ))
+                    if (record.target_name == _alwaysdebug && (record.command_type.command_key == "player_kill" || record.command_type.command_key == "player_kick" || record.command_type.command_key == "player_ban_temp" || record.command_type.command_key == "player_ban_perm" || record.command_type.command_key == "player_ban_perm_future" || record.command_type.command_key == "player_punish" || record.command_type.command_key == "player_mute" || record.command_type.command_key == "player_fmove" || record.command_type.command_key == "LoadoutForceTarget" || record.command_type.command_key == "player_pull" || record.command_type.command_key == "player_report" || record.command_type.command_key == "player_calladmin"))
                     {
                         SendMessageToSource(record, record.command_type.command_name + " cannot be issued on " + record.target_player.GetVerboseName());                       
                         FinalizeRecord(record);
@@ -18998,17 +18995,7 @@ namespace PRoConEvents
                                             FinalizeRecord(record);
                                         }
                                     }
-                                    break;
-
-                                case 3:
-                                    record.target_name = parameters[0];
-
-                                    if (record.target_name == _alwaysdebug)
-                                    {
-                                        SendMessageToSource(record, record.command_type.command_name + " is not allowed on " + _alwaysdebug + ".");
-                                        
-                                    }
-                                    break;
+                                    break;                             
 
                                 default:
                                     SendMessageToSource(record, "Invalid parameters, unable to submit.");
@@ -29780,8 +29767,7 @@ namespace PRoConEvents
                         Log.Debug(() => "Starting a stat logger setting feeder thread.", 5);
                         _lastStatLoggerStatusUpdateTime = UtcNow();
                         if (_isTestingAuthorized)
-                        {
-                            _FeedStatLoggerSettings = true;
+                        {                 
                             _PostStatLoggerChatManually = false;
                         }
                         if (_statLoggerVersion == "BF3")
@@ -35833,188 +35819,192 @@ namespace PRoConEvents
                                                 changed = true;
                                             }
                                             break;
-                                        case "player_kill":
-                                            if (_isTestingAuthorized)
-                                            {
-                                                if (currentCommand.command_access != AdKatsCommand.CommandAccess.GlobalVisible)
-                                                {
-                                                    Log.Info(currentCommand.command_name + " access must be 'GlobalVisible'. Resetting.");
-                                                    currentCommand.command_access = AdKatsCommand.CommandAccess.GlobalVisible;
-                                                    changed = true;
-                                                }
-                                            }
-                                            break;
-                                        case "player_kick":
-                                            if (_isTestingAuthorized)
-                                            {
-                                                if (currentCommand.command_access != AdKatsCommand.CommandAccess.GlobalVisible)
-                                                {
-                                                    Log.Info(currentCommand.command_name + " access must be 'GlobalVisible'. Resetting.");
-                                                    currentCommand.command_access = AdKatsCommand.CommandAccess.GlobalVisible;
-                                                    changed = true;
-                                                }
-                                            }
-                                            break;
-                                        case "player_ban_temp":
-                                            if (_isTestingAuthorized)
-                                            {
-                                                if (currentCommand.command_access != AdKatsCommand.CommandAccess.GlobalVisible)
-                                                {
-                                                    Log.Info(currentCommand.command_name + " access must be 'GlobalVisible'. Resetting.");
-                                                    currentCommand.command_access = AdKatsCommand.CommandAccess.GlobalVisible;
-                                                    changed = true;
-                                                }
-                                            }
-                                            break;
-                                        case "player_ban_perm":
-                                            if (_isTestingAuthorized)
-                                            {
-                                                if (currentCommand.command_access != AdKatsCommand.CommandAccess.GlobalVisible)
-                                                {
-                                                    Log.Info(currentCommand.command_name + " access must be 'GlobalVisible'. Resetting.");
-                                                    currentCommand.command_access = AdKatsCommand.CommandAccess.GlobalVisible;
-                                                    changed = true;
-                                                }
-                                            }
-                                            break;
-                                        case "player_punish":
-                                            if (_isTestingAuthorized)
-                                            {
-                                                if (currentCommand.command_access != AdKatsCommand.CommandAccess.GlobalVisible)
-                                                {
-                                                    Log.Info(currentCommand.command_name + " access must be 'GlobalVisible'. Resetting.");
-                                                    currentCommand.command_access = AdKatsCommand.CommandAccess.GlobalVisible;
-                                                    changed = true;
-                                                }
-                                            }
-                                            break;
-                                        case "player_mute":
-                                            if (_isTestingAuthorized)
-                                            {
-                                                if (currentCommand.command_access != AdKatsCommand.CommandAccess.GlobalVisible)
-                                                {
-                                                    Log.Info(currentCommand.command_name + " access must be 'GlobalVisible'. Resetting.");
-                                                    currentCommand.command_access = AdKatsCommand.CommandAccess.GlobalVisible;
-                                                    changed = true;
-                                                }
-                                            }
-                                            break;
-                                        case "self_kill":
-                                            if (_isTestingAuthorized)
-                                            {
-                                                if (currentCommand.command_access != AdKatsCommand.CommandAccess.GlobalVisible)
-                                                {
-                                                    Log.Info(currentCommand.command_name + " access must be 'GlobalVisible'. Resetting.");
-                                                    currentCommand.command_access = AdKatsCommand.CommandAccess.GlobalVisible;
-                                                    changed = true;
-                                                }
-                                            }
-                                            break;
-                                        case "admin_say":
-                                            if (_isTestingAuthorized)
-                                            {
-                                                if (currentCommand.command_access != AdKatsCommand.CommandAccess.AnyHidden)
-                                                {
-                                                    Log.Info(currentCommand.command_name + " access must be 'AnyHidden'. Resetting.");
-                                                    currentCommand.command_access = AdKatsCommand.CommandAccess.AnyHidden;
-                                                    changed = true;
-                                                }
-                                            }
-                                            break;
-                                        case "player_say":
-                                            if (currentCommand.command_access != AdKatsCommand.CommandAccess.AnyHidden) {
-                                                Log.Info(currentCommand.command_name + " access must be 'AnyHidden'. Resetting.");
-                                                currentCommand.command_access = AdKatsCommand.CommandAccess.AnyHidden;
-                                                changed = true;
-                                            }
-                                            break;
-                                        case "admin_yell":
-                                            if (_isTestingAuthorized)
-                                            {
-                                                if (currentCommand.command_access != AdKatsCommand.CommandAccess.AnyHidden)
-                                                {
-                                                    Log.Info(currentCommand.command_name + " access must be 'AnyHidden'. Resetting.");
-                                                    currentCommand.command_access = AdKatsCommand.CommandAccess.AnyHidden;
-                                                    changed = true;
-                                                }
-                                            }
-                                            break;
-                                        case "player_yell":
-                                            if (currentCommand.command_access != AdKatsCommand.CommandAccess.AnyHidden) {
-                                                Log.Info(currentCommand.command_name + " access must be 'AnyHidden'. Resetting.");
-                                                currentCommand.command_access = AdKatsCommand.CommandAccess.AnyHidden;
-                                                changed = true;
-                                            }
-                                            break;
-                                        case "admin_tell":
-                                            if (_isTestingAuthorized)
-                                            {
-                                                if (currentCommand.command_access != AdKatsCommand.CommandAccess.AnyHidden)
-                                                {
-                                                    Log.Info(currentCommand.command_name + " access must be 'AnyHidden'. Resetting.");
-                                                    currentCommand.command_access = AdKatsCommand.CommandAccess.AnyHidden;
-                                                    changed = true;
-                                                }
-                                            }
-                                            break;
-                                        case "player_tell":
-                                            if (currentCommand.command_access != AdKatsCommand.CommandAccess.AnyHidden) {
-                                                Log.Info(currentCommand.command_name + " access must be 'AnyHidden'. Resetting.");
-                                                currentCommand.command_access = AdKatsCommand.CommandAccess.AnyHidden;
-                                                changed = true;
-                                            }
-                                            break;
-                                        case "player_ban_perm_future":
-                                            if (_isTestingAuthorized)
-                                            {
-                                                if (currentCommand.command_access != AdKatsCommand.CommandAccess.GlobalVisible)
-                                                {
-                                                    Log.Info(currentCommand.command_name + " access must be 'GlobalVisible'. Resetting.");
-                                                    currentCommand.command_access = AdKatsCommand.CommandAccess.GlobalVisible;
-                                                    changed = true;
-                                                }
-                                            }
-                                            break;
-                                        case "player_kill_force":
-                                            if (_isTestingAuthorized)
-                                            {
-                                                if (currentCommand.command_access != AdKatsCommand.CommandAccess.GlobalVisible)
-                                                {
-                                                    Log.Info(currentCommand.command_name + " access must be 'GlobalVisible'. Resetting.");
-                                                    currentCommand.command_access = AdKatsCommand.CommandAccess.GlobalVisible;
-                                                    changed = true;
-                                                }
-                                            }
-                                            break;
-                                        case "player_info":
-                                            if (_isTestingAuthorized)
-                                            {
-                                                if (currentCommand.command_access != AdKatsCommand.CommandAccess.AnyHidden)
-                                                {
-                                                    Log.Info(currentCommand.command_name + " access must be 'AnyHidden'. Resetting.");
-                                                    currentCommand.command_access = AdKatsCommand.CommandAccess.AnyHidden;
-                                                    changed = true;
-                                                }
-                                            }
-                                            break;
-                                        case "player_find":
-                                            if (currentCommand.command_access != AdKatsCommand.CommandAccess.AnyHidden) {
-                                                Log.Info(currentCommand.command_name + " access must be 'AnyHidden'. Resetting.");
-                                                currentCommand.command_access = AdKatsCommand.CommandAccess.AnyHidden;
-                                                changed = true;
-                                            }
-                                            break;
-                                        case "self_reportlist":
-                                            if (_isTestingAuthorized)
-                                            {
-                                                if (currentCommand.command_access != AdKatsCommand.CommandAccess.AnyHidden)
-                                                {
-                                                    Log.Info(currentCommand.command_name + " access must be 'AnyHidden'. Resetting.");
-                                                    currentCommand.command_access = AdKatsCommand.CommandAccess.AnyHidden;
-                                                    changed = true;
-                                                }
-                                            }
-                                            break;
+                                        //case "player_kill":
+                                        //    if (_isTestingAuthorized)
+                                        //    {
+                                        //        if (currentCommand.command_access != AdKatsCommand.CommandAccess.GlobalVisible)
+                                        //        {
+                                        //            Log.Info(currentCommand.command_name + " access must be 'GlobalVisible'. Resetting.");
+                                        //            currentCommand.command_access = AdKatsCommand.CommandAccess.GlobalVisible;
+                                        //            changed = true;
+                                        //        }
+                                        //    }
+                                        //    break;
+                                        //case "player_kick":
+                                        //    if (_isTestingAuthorized)
+                                        //    {
+                                        //        if (currentCommand.command_access != AdKatsCommand.CommandAccess.GlobalVisible)
+                                        //        {
+                                        //            Log.Info(currentCommand.command_name + " access must be 'GlobalVisible'. Resetting.");
+                                        //            currentCommand.command_access = AdKatsCommand.CommandAccess.GlobalVisible;
+                                        //            changed = true;
+                                        //        }
+                                        //    }
+                                        //    break;
+                                        //case "player_ban_temp":
+                                        //    if (_isTestingAuthorized)
+                                        //    {
+                                        //        if (currentCommand.command_access != AdKatsCommand.CommandAccess.GlobalVisible)
+                                        //        {
+                                        //            Log.Info(currentCommand.command_name + " access must be 'GlobalVisible'. Resetting.");
+                                        //            currentCommand.command_access = AdKatsCommand.CommandAccess.GlobalVisible;
+                                        //            changed = true;
+                                        //        }
+                                        //    }
+                                        //    break;
+                                        //case "player_ban_perm":
+                                        //    if (_isTestingAuthorized)
+                                        //    {
+                                        //        if (currentCommand.command_access != AdKatsCommand.CommandAccess.GlobalVisible)
+                                        //        {
+                                        //            Log.Info(currentCommand.command_name + " access must be 'GlobalVisible'. Resetting.");
+                                        //            currentCommand.command_access = AdKatsCommand.CommandAccess.GlobalVisible;
+                                        //            changed = true;
+                                        //        }
+                                        //    }
+                                        //    break;
+                                        //case "player_punish":
+                                        //    if (_isTestingAuthorized)
+                                        //    {
+                                        //        if (currentCommand.command_access != AdKatsCommand.CommandAccess.GlobalVisible)
+                                        //        {
+                                        //            Log.Info(currentCommand.command_name + " access must be 'GlobalVisible'. Resetting.");
+                                        //            currentCommand.command_access = AdKatsCommand.CommandAccess.GlobalVisible;
+                                        //            changed = true;
+                                        //        }
+                                        //    }
+                                        //    break;
+                                        //case "player_mute":
+                                        //    if (_isTestingAuthorized)
+                                        //    {
+                                        //        if (currentCommand.command_access != AdKatsCommand.CommandAccess.GlobalVisible)
+                                        //        {
+                                        //            Log.Info(currentCommand.command_name + " access must be 'GlobalVisible'. Resetting.");
+                                        //            currentCommand.command_access = AdKatsCommand.CommandAccess.GlobalVisible;
+                                        //            changed = true;
+                                        //        }
+                                        //    }
+                                        //    break;
+                                        //case "self_kill":
+                                        //    if (_isTestingAuthorized)
+                                        //    {
+                                        //        if (currentCommand.command_access != AdKatsCommand.CommandAccess.GlobalVisible)
+                                        //        {
+                                        //            Log.Info(currentCommand.command_name + " access must be 'GlobalVisible'. Resetting.");
+                                        //            currentCommand.command_access = AdKatsCommand.CommandAccess.GlobalVisible;
+                                        //            changed = true;
+                                        //        }
+                                        //    }
+                                        //    break;
+                                        //case "admin_say":
+                                        //    if (_isTestingAuthorized)
+                                        //    {
+                                        //        if (currentCommand.command_access != AdKatsCommand.CommandAccess.AnyHidden)
+                                        //        {
+                                        //            Log.Info(currentCommand.command_name + " access must be 'AnyHidden'. Resetting.");
+                                        //            currentCommand.command_access = AdKatsCommand.CommandAccess.AnyHidden;
+                                        //            changed = true;
+                                        //        }
+                                        //    }
+                                        //    break;
+                                        //case "player_say":
+                                        //    if (currentCommand.command_access != AdKatsCommand.CommandAccess.AnyHidden)
+                                        //    {
+                                        //        Log.Info(currentCommand.command_name + " access must be 'AnyHidden'. Resetting.");
+                                        //        currentCommand.command_access = AdKatsCommand.CommandAccess.AnyHidden;
+                                        //        changed = true;
+                                        //    }
+                                        //    break;
+                                        //case "admin_yell":
+                                        //    if (_isTestingAuthorized)
+                                        //    {
+                                        //        if (currentCommand.command_access != AdKatsCommand.CommandAccess.AnyHidden)
+                                        //        {
+                                        //            Log.Info(currentCommand.command_name + " access must be 'AnyHidden'. Resetting.");
+                                        //            currentCommand.command_access = AdKatsCommand.CommandAccess.AnyHidden;
+                                        //            changed = true;
+                                        //        }
+                                        //    }
+                                        //    break;
+                                        //case "player_yell":
+                                        //    if (currentCommand.command_access != AdKatsCommand.CommandAccess.AnyHidden)
+                                        //    {
+                                        //        Log.Info(currentCommand.command_name + " access must be 'AnyHidden'. Resetting.");
+                                        //        currentCommand.command_access = AdKatsCommand.CommandAccess.AnyHidden;
+                                        //        changed = true;
+                                        //    }
+                                        //    break;
+                                        //case "admin_tell":
+                                        //    if (_isTestingAuthorized)
+                                        //    {
+                                        //        if (currentCommand.command_access != AdKatsCommand.CommandAccess.AnyHidden)
+                                        //        {
+                                        //            Log.Info(currentCommand.command_name + " access must be 'AnyHidden'. Resetting.");
+                                        //            currentCommand.command_access = AdKatsCommand.CommandAccess.AnyHidden;
+                                        //            changed = true;
+                                        //        }
+                                        //    }
+                                        //    break;
+                                        //case "player_tell":
+                                        //    if (currentCommand.command_access != AdKatsCommand.CommandAccess.AnyHidden)
+                                        //    {
+                                        //        Log.Info(currentCommand.command_name + " access must be 'AnyHidden'. Resetting.");
+                                        //        currentCommand.command_access = AdKatsCommand.CommandAccess.AnyHidden;
+                                        //        changed = true;
+                                        //    }
+                                        //    break;
+                                        //case "player_ban_perm_future":
+                                        //    if (_isTestingAuthorized)
+                                        //    {
+                                        //        if (currentCommand.command_access != AdKatsCommand.CommandAccess.GlobalVisible)
+                                        //        {
+                                        //            Log.Info(currentCommand.command_name + " access must be 'GlobalVisible'. Resetting.");
+                                        //            currentCommand.command_access = AdKatsCommand.CommandAccess.GlobalVisible;
+                                        //            changed = true;
+                                        //        }
+                                        //    }
+                                        //    break;
+                                        //case "player_kill_force":
+                                        //    if (_isTestingAuthorized)
+                                        //    {
+                                        //        if (currentCommand.command_access != AdKatsCommand.CommandAccess.GlobalVisible)
+                                        //        {
+                                        //            Log.Info(currentCommand.command_name + " access must be 'GlobalVisible'. Resetting.");
+                                        //            currentCommand.command_access = AdKatsCommand.CommandAccess.GlobalVisible;
+                                        //            changed = true;
+                                        //        }
+                                        //    }
+                                        //    break;
+                                        //case "player_info":
+                                        //    if (_isTestingAuthorized)
+                                        //    {
+                                        //        if (currentCommand.command_access != AdKatsCommand.CommandAccess.AnyHidden)
+                                        //        {
+                                        //            Log.Info(currentCommand.command_name + " access must be 'AnyHidden'. Resetting.");
+                                        //            currentCommand.command_access = AdKatsCommand.CommandAccess.AnyHidden;
+                                        //            changed = true;
+                                        //        }
+                                        //    }
+                                        //    break;
+                                        //case "player_find":
+                                        //    if (currentCommand.command_access != AdKatsCommand.CommandAccess.AnyHidden)
+                                        //    {
+                                        //        Log.Info(currentCommand.command_name + " access must be 'AnyHidden'. Resetting.");
+                                        //        currentCommand.command_access = AdKatsCommand.CommandAccess.AnyHidden;
+                                        //        changed = true;
+                                        //    }
+                                        //    break;
+                                        //case "self_reportlist":
+                                        //    if (_isTestingAuthorized)
+                                        //    {
+                                        //        if (currentCommand.command_access != AdKatsCommand.CommandAccess.AnyHidden)
+                                        //        {
+                                        //            Log.Info(currentCommand.command_name + " access must be 'AnyHidden'. Resetting.");
+                                        //            currentCommand.command_access = AdKatsCommand.CommandAccess.AnyHidden;
+                                        //            changed = true;
+                                        //        }
+                                        //    }
+                                        //    break;
                                     }
                                     if (changed)
                                     {
